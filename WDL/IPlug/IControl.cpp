@@ -768,3 +768,244 @@ bool IFileSelectorControl::IsDirty()
   }
   return false;
 }
+
+IScrollbar::IScrollbar(IPlugBase *pPlug, IRECT *pR, IScrollInfo *si, IColor fg, IColor bg, IScrollbarListener* listener, bool isVertical)
+	: IControl(pPlug, *pR), mListener(listener), fg(fg), bg(bg), vertical(isVertical)
+{
+	if (si)
+		memcpy((void *)&this->si, si, sizeof(*si));
+	else
+		memset((void *)&this->si, 0, sizeof(*si));
+	if (pR)
+		memcpy((void *)&this->mRECT, pR, sizeof(*pR));
+	else
+		memset((void *)&this->mRECT, 0, sizeof(*pR));
+
+	mTargetRECT = mRECT;
+	if (vertical) {
+		mTargetRECT.T += mRECT.W();
+		mTargetRECT.B -= mRECT.W();
+	}
+	else {
+		mTargetRECT.L += mRECT.H();
+		mTargetRECT.R -= mRECT.H();
+	}
+
+	mTopThumb.L = mRECT.L + 1;
+	mTopThumb.R = mRECT.R - 1;
+	mTopThumb.T = mRECT.T + 1;
+	mTopThumb.B = mRECT.T + mRECT.W();
+	mBottomThumb.L = mTopThumb.L;
+	mBottomThumb.R = mTopThumb.R;
+	mBottomThumb.T = mRECT.B - mRECT.W();
+	mBottomThumb.B = mRECT.B - 1;
+	mLeftThumb.L = mRECT.L + 1;
+	mLeftThumb.R = mRECT.L + mRECT.H();
+	mLeftThumb.T = mRECT.B - mRECT.H();
+	mLeftThumb.B = mRECT.B - 1;
+	mRightThumb.L = mRECT.R - mRECT.H();
+	mRightThumb.R = mRECT.R - 1;
+	mRightThumb.T = mLeftThumb.T;
+	mRightThumb.B = mLeftThumb.B;
+}
+
+IScrollbar::~IScrollbar()
+{
+}
+
+bool IScrollbar::SetScrollInfo(IScrollInfo * si)
+{
+	if (si)
+		memcpy(&this->si, si, sizeof(*si));
+	else
+		return false;
+
+	return true;
+}
+
+bool IScrollbar::GetScrollInfo(IScrollInfo *si) {
+	if (si)
+		*si = this->si;
+	else
+		return false;
+	return true;
+}
+
+bool IScrollbar::Draw(IGraphics * pGraphics)
+{
+	IRECT handleRECT;
+
+	// background
+	if (!pGraphics->FillIRect(&bg, &mRECT))
+		return false;
+	
+	// thumb buttons
+	int x1, x2, x3, y1, y2, y3;
+	if (vertical) {
+		// top triangle
+		x1 = mTopThumb.L; x2 = mTopThumb.L + ((double)mTopThumb.W() / 2.0f); x3 = mTopThumb.R;
+		y1 = mTopThumb.T + mTopThumb.W(); y2 = mTopThumb.T; y3 = y1;
+		if (!pGraphics->FillTriangle(&fg, x1, y1, x2, y2, x3, y3, NULL))
+			return false;
+
+		// bottom triangle
+		x1 = mBottomThumb.L; x2 = mBottomThumb.L + ((double)mBottomThumb.W() / 2.0f); x3 = mBottomThumb.R;
+		y1 = mBottomThumb.B - mBottomThumb.W(); y2 = mBottomThumb.B; y3 = y1;
+		if (!pGraphics->FillTriangle(&fg, x1, y1, x2, y2, x3, y3, NULL))
+			return false;
+	}
+	else {
+		// left triangle
+		x1 = mLeftThumb.L; x2 = mLeftThumb.R; x3 = x2;
+		y1 = mLeftThumb.B - ((double)mLeftThumb.H() / 2.0f); y2 = mLeftThumb.B; y3 = mLeftThumb.T;
+		if (!pGraphics->FillTriangle(&fg, x1, y1, x2, y2, x3, y3, NULL))
+			return false;
+		// right triangle
+		x1 = mRightThumb.R - mRightThumb.H(); x2 = mRightThumb.R; x3 = x1;
+		y1 = mRightThumb.B; y2 = mRightThumb.B - ((double)mRECT.H() / 2.0f); y3 = mRightThumb.T;
+		if (!pGraphics->FillTriangle(&fg, x1, y1, x2, y2, x3, y3, NULL))
+			return false;
+	}
+
+	// thumb slider
+	GetThumbSliderRect(handleRECT);
+	if (!pGraphics->FillIRect(&fg, &handleRECT))
+		return false;
+
+	handleRECT.B -= 2;
+	handleRECT.T += 1;
+	handleRECT.L += 1;
+	handleRECT.R -= 2;
+	return pGraphics->DrawRect(&bg, &handleRECT);
+}
+	
+
+double IScrollbar::GetCurrentPosPercent()
+{
+	double   thePosPercent = 0.0f;
+	long    theCurPos = si.nPos - si.nMin;
+
+	// Compute the current position percent scrolled
+	double   theRange = (double)(si.nMax - si.nMin);
+	thePosPercent = theCurPos / theRange;
+	return (thePosPercent);
+}
+
+void IScrollbar::GetThumbSliderRect(IRECT &thumbSliderRect)
+{
+	long    l;
+	float   pctScroll;
+	long    thumbSliderLength;
+
+	thumbSliderRect = mTargetRECT;
+
+	// Get the percentage of the scrollbar position
+	pctScroll = GetCurrentPosPercent();
+
+	thumbSliderLength = GetThumbSliderLength();
+
+	if (vertical)
+	{
+		// vertical scrollbar
+		l = thumbSliderRect.H() - thumbSliderLength;
+		thumbSliderRect.T += (long)((float)l * pctScroll);
+		thumbSliderRect.B = thumbSliderRect.T + thumbSliderLength;
+	}
+	else
+	{
+		// horizontal scrollbar
+		l = thumbSliderRect.W() - thumbSliderLength;
+		thumbSliderRect.L += (long)((float)l * pctScroll);
+		thumbSliderRect.R = thumbSliderRect.L + thumbSliderLength;
+	}
+
+
+}
+
+void IScrollbar::SetScrollPos(int pos, bool dirty)
+{
+	si.nPos = pos;
+	// bounds checking:
+	if (si.nPos < si.nMin)
+		si.nPos = si.nMin;
+	else if (si.nPos > si.nMax)
+		si.nPos = si.nMax;
+	if (dirty)
+		SetDirty();
+	if (mListener)
+		mListener->NotifyParentScrollPosChange(this, si.nPos);
+}
+
+int IScrollbar::GetThumbSliderLength()
+{
+	return (int)(((double)si.nPage / (double)si.nMax) * (vertical ? (double)mTargetRECT.H() : (double)mTargetRECT.W()));
+}
+
+void IScrollbar::OnMouseDown(int x, int y, IMouseMod * pMod)
+{
+	if (vertical) {
+		if (mTopThumb.Contains(x, y)) {
+			SetScrollPos(si.nPos - 1, true);
+		}
+		else if (mBottomThumb.Contains(x, y)) {
+			SetScrollPos(si.nPos + 1, true);
+		}
+		else {
+			SetScrollPos(((double)(y - mTargetRECT.T) / (double)mTargetRECT.H()) * ((double)si.nMax - (double)si.nMin), true);
+		}
+	}
+	else {
+		if (mLeftThumb.Contains(x, y)) {
+			SetScrollPos(si.nPos - 1, true);
+		}
+		else if (mRightThumb.Contains(x, y)) {
+			SetScrollPos(si.nPos + 1, true);
+		}
+		else {
+			SetScrollPos(((double)(x - mTargetRECT.L) / (double)mTargetRECT.W()) * ((double)si.nMax - (double)si.nMin), true);
+		}
+	}
+}
+
+void IScrollbar::OnMouseDrag(int x, int y, int dX, int dY, IMouseMod* pMod)
+{
+	SetScrollPos(si.nPos + 
+		(vertical ? 
+			((double)si.nMax / (double)mTargetRECT.H()) * (double)dY :
+			((double)si.nMax / (double)mTargetRECT.W()) * (double)dX),
+		true);
+}
+
+void IScrollbar::OnMouseWheel(int x, int y, IMouseMod* pMod, int d)
+{
+	SetScrollPos(si.nPos + ((d < 0) ? si.nPage : -si.nPage), true);
+}
+
+bool IScrollbar::OnKeyDown(int x, int y, int key)
+{
+	switch (key) {
+	case KEY_LEFTARROW:
+	case KEY_UPARROW:
+		SetScrollPos(si.nPos - 1, true);
+		break;
+	case KEY_RIGHTARROW:
+	case KEY_DOWNARROW:
+		SetScrollPos(si.nPos + 1, true);
+		break;
+	case KEY_HOME:
+		SetScrollPos(si.nMin, true);
+		break;
+	case KEY_END:
+		SetScrollPos(si.nMax, true);
+		break;
+	case KEY_PRIOR:
+		SetScrollPos(si.nPos - si.nPage, true);
+		break;
+	case KEY_NEXT:
+		SetScrollPos(si.nPos + si.nPage, true);
+		break;
+	default:
+		return false;
+	}
+	return true;
+}

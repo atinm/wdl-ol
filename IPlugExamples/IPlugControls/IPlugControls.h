@@ -38,6 +38,7 @@ enum EParams
   kIKnobMultiControl_def,
   kIKnobMultiControl_Horiz,
   kIKnobRotatingMaskControl,
+  kITextControl,
   kICaptionControl,
   kNumParams,   // put any controls to be controlled from the plug but not
   kInvisibleSwitchIndicator   // the user after kNumParams so they get a param id

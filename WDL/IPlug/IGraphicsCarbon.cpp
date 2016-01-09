@@ -347,6 +347,10 @@ pascal OSStatus IGraphicsCarbon::MainEventHandler(EventHandlerCallRef pHandlerCa
           else if (k == 126) key = KEY_UPARROW;
           else if (k == 123) key = KEY_LEFTARROW;
           else if (k == 124) key = KEY_RIGHTARROW;
+	  else if (k == 0x74) key = KEY_PRIOR;
+	  else if (k == 0x79) key = KEY_NEXT;
+	  else if (k == 0x73) key = KEY_HOME;
+	  else if (k == 0x77) key = KEY_END;
           else if (c >= '0' && c <= '9') key = KEY_DIGIT_0+c-'0';
           else if (c >= 'A' && c <= 'Z') key = KEY_ALPHA_A+c-'A';
           else if (c >= 'a' && c <= 'z') key = KEY_ALPHA_A+c-'a';

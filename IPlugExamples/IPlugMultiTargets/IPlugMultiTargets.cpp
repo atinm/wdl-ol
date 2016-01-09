@@ -58,10 +58,12 @@ IPlugMultiTargets::IPlugMultiTargets(IPlugInstanceInfo instanceInfo)
   pGraphics->AttachBackground(BG_ID, BG_FN);
 
   IBitmap knob = pGraphics->LoadIBitmap(KNOB_ID, KNOB_FN, kKnobFrames);
-  IText text = IText(14);
-
+  IText text = IText(12);
+  text.mTextEntryFGColor = COLOR_YELLOW;
+  text.mStyle = IText::kStyleBold;
   pGraphics->AttachControl(new IKnobMultiControlText(this, IRECT(kGainX, kGainY, kGainX + 48, kGainY + 48 + 20), kGainL, &knob, &text));
-  pGraphics->AttachControl(new IKnobMultiControlText(this, IRECT(kGainX + 75, kGainY, kGainX + 48 + 75, kGainY + 48 + 20), kGainR, &knob, &text));
+  //pGraphics->AttachControl(new IKnobMultiControlText(this, IRECT(kGainX + 75, kGainY, kGainX + 48 + 75, kGainY + 48 + 20), kGainR, &knob, &text));
+  pGraphics->AttachControl(new IKnobMultiControlLabel(this, IRECT(kGainX + 75, kGainY, kGainX + 48 + 75, kGainY + 48 + text.mSize), kGainR, &knob, &text, "Label"));
   pGraphics->AttachControl(new ITempoDisplay(this, IRECT(300, 10, kWidth, 20), &text, &mTimeInfo));
 
   pGraphics->AttachControl(new ITestPopupMenu(this, IRECT(410, 100, 460, 115)));

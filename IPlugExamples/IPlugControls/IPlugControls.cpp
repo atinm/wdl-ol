@@ -120,13 +120,16 @@ IPlugControls::IPlugControls(IPlugInstanceInfo instanceInfo)
   bitmap = pGraphics->LoadIBitmap(IBOC_ID, IBOC_FN);
   pGraphics->AttachControl(new IBitmapOverlayControl(this, kIBOC_X, kIBOC_Y, &bitmap, IRECT(kIBOC_T_X, kIBOC_T_Y, (kIBOC_T_X + kIBOC_T_W), (kIBOC_T_Y + kIBOC_T_W))));
 
-  IText text = IText(14);
-
+  IText text = IText(14, &COLOR_WHITE);
+  text.mTextEntryBGColor = COLOR_BLUE;
+  text.mBkMode = OPAQUE;
   //Attach ITextControl
   pGraphics->AttachControl(new ITextControl(this, IRECT(kITC_X, kITC_Y, (kITC_X + kITC_W), (kITC_Y + kITC_H)), &text, "Display text strings"));
 
   //Attach ICaptionControl
-  pGraphics->AttachControl(new ICaptionControl(this, IRECT(kICC_X, kICC_Y, (kICC_X + kICC_W), (kICC_Y + kICC_H)), kICaptionControl, &text));
+  ICaptionControl *captionControl = new ICaptionControl(this, IRECT(kICC_X, kICC_Y, (kICC_X + kICC_W), (kICC_Y + kICC_H)), kICaptionControl, &text);
+  //captionControl->DisablePrompt(false);
+  pGraphics->AttachControl(captionControl);
 
   //Attach IURLControl
   pGraphics->AttachControl(new IURLControl(this, IRECT(kIUC_X, kIUC_Y, (kIUC_X + kIUC_W), (kIUC_Y + kIUC_W)), "https://github.com/audio-plugins/wdl-ce/wiki"));
@@ -178,7 +181,6 @@ void IPlugControls::OnParamChange(int paramIdx)
     }
     InformHostOfParamChange(kICaptionControl, (GetParam(paramIdx)->Int())/14); //inform host of new normalized value
   }
-
 }
 
 

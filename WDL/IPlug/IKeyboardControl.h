@@ -191,13 +191,14 @@ public:
   }
 
 protected:
-  virtual void DrawKey(IGraphics* pGraphics, IRECT* pR, int key, int note, bool sharp)
-  {
-    if (sharp)
-      pGraphics->DrawBitmap(&mSharpKey, pR, 0, &mBlend);
-    else
-      pGraphics->DrawBitmap(&mRegularKeys, pR, key < mMaxKey ? mBitmapN[note] : 6, &mBlend);
-  }
+	virtual void DrawKey(IGraphics* pGraphics, IRECT* pR, int key, int note, bool sharp)
+	{
+		if (sharp)
+			pGraphics->DrawBitmap(&mSharpKey, pR, 0, &mBlend);
+		else
+			pGraphics->DrawBitmap(&mRegularKeys, pR, key < mMaxKey ? mBitmapN[note] : 6, &mBlend);
+	}
+
 
   /* Override the above method if e.g. you want to draw the 1st octave
   // using different bitmaps:
@@ -211,7 +212,15 @@ protected:
     else
     {
       int n;
-      if (key < mMaxKey)
+	  if (key < 3)
+	  {
+		  switch (key) {
+			  case 0: n = mBitmapN[0]; break;
+			  case 1: n = mBitmapN[1]; break;
+			  case 2: n = mBitmapN[2]; break;
+		  }
+	  }
+      else if (key < mMaxKey)
       {
         n = mBitmapN[note];
         if (key >= 12) n += 5;

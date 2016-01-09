@@ -484,4 +484,53 @@ protected:
   EFileSelectorState mState;
 };
 
+
+class IScrollbar;
+class IScrollbarListener
+{
+public:
+	IScrollbarListener() {};
+	~IScrollbarListener() {};
+
+	virtual void NotifyParentScrollPosChange(IScrollbar *scrollbar, int pos) = 0;
+};
+
+class IScrollbar : public IControl
+{
+public:
+	IScrollbar(IPlugBase *pPlug, IRECT *pR, IScrollInfo *si, IColor fg, IColor bg, IScrollbarListener* listner, bool isVertical);
+	~IScrollbar();
+
+	bool isVertical() const noexcept { return vertical; };
+
+	virtual void OnMouseDown(int x, int y, IMouseMod* pMod);
+	virtual void OnMouseDrag(int x, int y, int dX, int dY, IMouseMod* pMod);
+	virtual void OnMouseWheel(int x, int y, IMouseMod* pMod, int d);
+	virtual bool OnKeyDown(int x, int y, int key);
+
+	IRECT* GetRECT() { return &mRECT; }       // The draw area for this control.
+	IRECT* GetTargetRECT() { return &mTargetRECT; } // The mouse target area (default = draw area).
+	bool SetTargetArea(IRECT pR) { mTargetRECT = pR; }
+	bool SetScrollInfo(IScrollInfo *si);
+	bool GetScrollInfo(IScrollInfo *si);
+
+	bool Draw(IGraphics* pGraphics);
+
+	IPlugBase* GetPlug() { return mPlug; }
+	IGraphics* GetGUI() { return mPlug->GetGUI(); }
+
+private:
+	IScrollbarListener *mListener;
+	bool vertical;
+	IScrollInfo si;
+	IColor fg, bg;
+	IRECT mTargetRECT;
+	IRECT mLeftThumb, mRightThumb, mTopThumb, mBottomThumb;
+	IPlugBase* mPlug;
+
+	double GetCurrentPosPercent();
+	void GetThumbSliderRect(IRECT &theThumbSliderRect);
+	void SetScrollPos(int pos, bool dirty);
+	int GetThumbSliderLength();
+};
 #endif

@@ -80,45 +80,46 @@ struct IText
 {
   char mFont[FONT_LEN];
   int mSize;
-  IColor mColor, mTextEntryBGColor, mTextEntryFGColor;
+  IColor mTextEntryBGColor, mTextEntryFGColor;
   enum EStyle { kStyleNormal, kStyleBold, kStyleItalic } mStyle;
   enum EAlign { kAlignNear, kAlignCenter, kAlignFar } mAlign;
   int mOrientation;   // Degrees ccwise from normal.
   enum EQuality { kQualityDefault, kQualityNonAntiAliased, kQualityAntiAliased, kQualityClearType } mQuality;
   LICE_IFont* mCached;
+  int mBkMode;
 
   IText(int size = DEFAULT_TEXT_SIZE,
-        const IColor* pColor = 0,
-        char* font = 0,
+		const IColor* pTEFGColor = 0,
+		const IColor* pTEBGColor = 0,	
+		const int bkmode = TRANSPARENT,
+		char* font = 0,
         EStyle style = kStyleNormal,
         EAlign align = kAlignCenter,
         int orientation = 0,
-        EQuality quality = kQualityDefault,
-        const IColor* pTEBGColor = 0,
-        const IColor* pTEFGColor = 0)
+        EQuality quality = kQualityDefault)
     : mSize(size)
-    , mColor(pColor ? *pColor : DEFAULT_TEXT_COLOR)
-    , mStyle(style)
+	, mTextEntryFGColor(pTEFGColor ? *pTEFGColor : DEFAULT_TEXT_ENTRY_FGCOLOR)
+	, mTextEntryBGColor(pTEBGColor ? *pTEBGColor : DEFAULT_TEXT_ENTRY_BGCOLOR)
+	, mBkMode(bkmode)
+	, mStyle(style)
     , mAlign(align)
     , mOrientation(orientation)
     , mQuality(quality)
     , mCached(0)
-    , mTextEntryBGColor(pTEBGColor ? *pTEBGColor : DEFAULT_TEXT_ENTRY_BGCOLOR)
-    , mTextEntryFGColor(pTEFGColor ? *pTEFGColor : DEFAULT_TEXT_ENTRY_FGCOLOR)
   {
     strcpy(mFont, (font ? font : DEFAULT_FONT));
   }
 
   IText(const IColor* pColor)
     : mSize(DEFAULT_TEXT_SIZE)
-    , mColor(*pColor)
-    , mStyle(kStyleNormal)
+	, mTextEntryFGColor(*pColor)
+	, mTextEntryBGColor(DEFAULT_TEXT_ENTRY_BGCOLOR)
+	, mBkMode(TRANSPARENT)
+	, mStyle(kStyleNormal)
     , mAlign(kAlignCenter)
     , mOrientation(0)
     , mQuality(kQualityDefault)
     , mCached(0)
-    , mTextEntryBGColor(DEFAULT_TEXT_ENTRY_BGCOLOR)
-    , mTextEntryFGColor(DEFAULT_TEXT_ENTRY_FGCOLOR)
   {
     strcpy(mFont, DEFAULT_FONT);
   }
@@ -464,10 +465,25 @@ enum
   KEY_DOWNARROW,
   KEY_LEFTARROW,
   KEY_RIGHTARROW,
+  KEY_PRIOR,
+  KEY_NEXT,
+  KEY_HOME,
+  KEY_END,
   KEY_DIGIT_0,
   KEY_DIGIT_9=KEY_DIGIT_0+9,
   KEY_ALPHA_A,
   KEY_ALPHA_Z=KEY_ALPHA_A+25
+};
+
+struct IScrollInfo
+{
+	UINT cbSize;
+	UINT fMask;
+
+	int nMin;
+	int nMax;
+	int nPage;
+	int nPos;
 };
 
 #endif

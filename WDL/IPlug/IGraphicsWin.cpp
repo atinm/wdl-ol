@@ -297,6 +297,10 @@ LRESULT CALLBACK IGraphicsWin::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARA
       else if (wParam == VK_DOWN) key = KEY_DOWNARROW;
       else if (wParam == VK_LEFT) key = KEY_LEFTARROW;
       else if (wParam == VK_RIGHT) key = KEY_RIGHTARROW;
+      else if (wParam == VK_PRIOR) key = KEY_PRIOR;
+      else if (wParam == VK_NEXT) key = KEY_NEXT;
+      else if (wParam == VK_HOME) key = KEY_HOME;
+      else if (wParam == VK_END) key = KEY_END;
       else if (wParam >= '0' && wParam <= '9') key = KEY_DIGIT_0+wParam-'0';
       else if (wParam >= 'A' && wParam <= 'Z') key = KEY_ALPHA_A+wParam-'A';
       else if (wParam >= 'a' && wParam <= 'z') key = KEY_ALPHA_A+wParam-'a';

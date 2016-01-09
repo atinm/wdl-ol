@@ -1103,8 +1103,11 @@ bool IGraphics::DrawIText(IText* pTxt, char* str, IRECT* pR, bool measure)
     if (!font) return false;
   }
 
-  LICE_pixel color = LiceColor(&pTxt->mColor);
+  LICE_pixel color = LiceColor(&pTxt->mTextEntryFGColor);
   font->SetTextColor(color);
+  LICE_pixel bgcolor = LiceColor(&pTxt->mTextEntryBGColor);
+  font->SetBkMode(pTxt->mBkMode);
+  font->SetBkColor(bgcolor);
 
   UINT fmt = DT_NOCLIP;
   if (LICE_GETA(color) < 255) fmt |= LICE_DT_USEFGALPHA;
