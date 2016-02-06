@@ -234,17 +234,17 @@ struct IRECT
 
     return IRECT(L + l, T, L + l + widthOfSubRect, B);
   }
-  
+
   inline IRECT GetPadded(int padding)
   {
     return IRECT(L-padding, T-padding, R+padding, B+padding);
   }
-  
+
   inline IRECT GetPadded(int padL, int padT, int padR, int padB)
   {
     return IRECT(L+padL, T+padT, R+padR, B+padB);
   }
-  
+
   inline IRECT GetHPadded(int padding)
   {
     return IRECT(L-padding, T, R+padding, B);
@@ -254,7 +254,7 @@ struct IRECT
   {
     return IRECT(L, T-padding, R, B+padding);
   }
-  
+
   void Clank(IRECT* pRHS)
   {
     if (L < pRHS->L)

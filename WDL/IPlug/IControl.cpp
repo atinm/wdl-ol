@@ -37,8 +37,8 @@ void IControl::SetDirty(bool pushParamToPlug)
   {
     mPlug->SetParameterFromGUI(mParamIdx, mValue);
     IParam* pParam = mPlug->GetParam(mParamIdx);
-    
-    if (mValDisplayControl) 
+
+    if (mValDisplayControl)
     {
       WDL_String plusLabel;
       char str[32];
@@ -46,11 +46,11 @@ void IControl::SetDirty(bool pushParamToPlug)
       plusLabel.Set(str, 32);
       plusLabel.Append(" ", 32);
       plusLabel.Append(pParam->GetLabelForHost(), 32);
-      
+
       ((ITextControl*)mValDisplayControl)->SetTextFromPlug(plusLabel.Get());
     }
-    
-    if (mNameDisplayControl) 
+
+    if (mNameDisplayControl)
     {
       ((ITextControl*)mNameDisplayControl)->SetTextFromPlug((char*) pParam->GetNameForHost());
     }
@@ -86,7 +86,7 @@ void IControl::OnMouseDown(int x, int y, IMouseMod* pMod)
     SetDirty();
   }
   #endif
-  
+
   if (pMod->R) {
 		PromptUserInput();
 	}
@@ -153,7 +153,7 @@ int IControl::AuxParamIdx(int paramIdx)
     if(GetAuxParam(i)->mParamIdx == paramIdx)
       return i;
   }
-  
+
   return -1;
 }
 
@@ -165,7 +165,7 @@ void IControl::AddAuxParam(int paramIdx)
 void IControl::SetAuxParamValueFromPlug(int auxParamIdx, double value)
 {
   AuxParam* auxParam = GetAuxParam(auxParamIdx);
-  
+
   if (auxParam->mValue != value)
   {
     auxParam->mValue = value;
@@ -234,29 +234,29 @@ ISwitchFramesControl::ISwitchFramesControl(IPlugBase* pPlug, int x, int y, int p
   : ISwitchControl(pPlug, x, y, paramIdx, pBitmap, blendMethod)
 {
   mDisablePrompt = false;
-  
+
   for(int i = 0; i < pBitmap->N; i++)
   {
     if (imagesAreHorizontal)
-      mRECTs.Add(mRECT.SubRectHorizontal(pBitmap->N, i)); 
+      mRECTs.Add(mRECT.SubRectHorizontal(pBitmap->N, i));
     else
-      mRECTs.Add(mRECT.SubRectVertical(pBitmap->N, i)); 
+      mRECTs.Add(mRECT.SubRectVertical(pBitmap->N, i));
   }
 }
 
 void ISwitchFramesControl::OnMouseDown(int x, int y, IMouseMod* pMod)
 {
   int n = mRECTs.GetSize();
-  
-  for (int i = 0; i < n; i++) 
+
+  for (int i = 0; i < n; i++)
   {
-    if (mRECTs.Get()[i].Contains(x, y)) 
+    if (mRECTs.Get()[i].Contains(x, y))
     {
       mValue = (double) i / (double) (n - 1);
       break;
     }
   }
-  
+
   SetDirty();
 }
 
@@ -285,19 +285,19 @@ IRadioButtonsControl::IRadioButtonsControl(IPlugBase* pPlug, IRECT pR, int param
 {
   mRECTs.Resize(nButtons);
   int h = int((double) pBitmap->H / (double) pBitmap->N);
-  
-  if (reverse) 
+
+  if (reverse)
   {
     if (direction == kHorizontal)
     {
       int dX = int((double) (pR.W() - nButtons * pBitmap->W) / (double) (nButtons - 1));
       int x = mRECT.R - pBitmap->W - dX;
       int y = mRECT.T;
-      
+
       for (int i = 0; i < nButtons; ++i)
       {
-        mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
-        x -= pBitmap->W + dX;
+	mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
+	x -= pBitmap->W + dX;
       }
     }
     else
@@ -305,26 +305,26 @@ IRadioButtonsControl::IRadioButtonsControl(IPlugBase* pPlug, IRECT pR, int param
       int dY = int((double) (pR.H() - nButtons * h) /  (double) (nButtons - 1));
       int x = mRECT.L;
       int y = mRECT.B - h - dY;
-      
+
       for (int i = 0; i < nButtons; ++i)
       {
-        mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
-        y -= h + dY;
+	mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
+	y -= h + dY;
       }
     }
-    
+
   }
   else
   {
     int x = mRECT.L, y = mRECT.T;
-    
+
     if (direction == kHorizontal)
     {
       int dX = int((double) (pR.W() - nButtons * pBitmap->W) / (double) (nButtons - 1));
       for (int i = 0; i < nButtons; ++i)
       {
-        mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
-        x += pBitmap->W + dX;
+	mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
+	x += pBitmap->W + dX;
       }
     }
     else
@@ -332,8 +332,8 @@ IRadioButtonsControl::IRadioButtonsControl(IPlugBase* pPlug, IRECT pR, int param
       int dY = int((double) (pR.H() - nButtons * h) /  (double) (nButtons - 1));
       for (int i = 0; i < nButtons; ++i)
       {
-        mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
-        y += h + dY;
+	mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
+	y += h + dY;
       }
     }
   }
@@ -342,7 +342,7 @@ IRadioButtonsControl::IRadioButtonsControl(IPlugBase* pPlug, IRECT pR, int param
 void IRadioButtonsControl::OnMouseDown(int x, int y, IMouseMod* pMod)
 {
   #ifdef PROTOOLS
-  if (pMod->A) 
+  if (pMod->A)
   {
     if (mDefaultValue >= 0.0)
     {
@@ -438,7 +438,7 @@ IRECT IFaderControl::GetHandleRECT(double value) const
 void IFaderControl::OnMouseDown(int x, int y, IMouseMod* pMod)
 {
   #ifdef PROTOOLS
-  if (pMod->A) 
+  if (pMod->A)
   {
     if (mDefaultValue >= 0.0)
     {
@@ -480,7 +480,7 @@ void IFaderControl::OnMouseWheel(int x, int y, IMouseMod* pMod, int d)
   {
     mValue += 0.01 * d;
   }
-  
+
   SetDirty();
 }
 
@@ -503,23 +503,23 @@ bool IFaderControl::Draw(IGraphics* pGraphics)
   return pGraphics->DrawBitmap(&mBitmap, &r, 1, &mBlend);
 }
 
-bool IFaderControl::IsHit(int x, int y) 
+bool IFaderControl::IsHit(int x, int y)
 {
   if(mOnlyHandle)
   {
     IRECT r = GetHandleRECT();
-    return r.Contains(x, y); 
+    return r.Contains(x, y);
   }
-  else 
+  else
   {
-    return mTargetRECT.Contains(x, y); 
+    return mTargetRECT.Contains(x, y);
   }
 }
 
 void IKnobControl::OnMouseDrag(int x, int y, int dX, int dY, IMouseMod* pMod)
 {
   double gearing = mGearing;
-  
+
   #ifdef PROTOOLS
     #ifdef OS_WIN
       if (pMod->C) gearing *= 10.0;
@@ -529,7 +529,7 @@ void IKnobControl::OnMouseDrag(int x, int y, int dX, int dY, IMouseMod* pMod)
   #else
     if (pMod->C || pMod->S) gearing *= 10.0;
   #endif
-  
+
   if (mDirection == kVertical)
   {
     mValue += (double) dY / (double) (mRECT.T - mRECT.B) / gearing;
@@ -559,13 +559,13 @@ void IKnobControl::OnMouseWheel(int x, int y, IMouseMod* pMod, int d)
   {
     mValue += 0.01 * d;
   }
-  
+
   SetDirty();
 }
 
 IKnobLineControl::IKnobLineControl(IPlugBase* pPlug, IRECT pR, int paramIdx,
-                                   const IColor* pColor, double innerRadius, double outerRadius,
-                                   double minAngle, double maxAngle, EDirection direction, double gearing)
+				   const IColor* pColor, double innerRadius, double outerRadius,
+				   double minAngle, double maxAngle, EDirection direction, double gearing)
   :   IKnobControl(pPlug, pR, paramIdx, direction, gearing),
       mColor(*pColor)
 {
@@ -808,7 +808,7 @@ bool IScrollbar::GetScrollInfo(IScrollInfo *si) {
 bool IScrollbar::Draw(IGraphics *pGraphics)
 {
 	IRECT handleRECT;
-	
+
 	if (fps == 0)
 		fps = pGraphics->FPS();
 	if (timer > 0) {
@@ -828,7 +828,6 @@ bool IScrollbar::Draw(IGraphics *pGraphics)
 	else
 		return pGraphics->FillRoundRect(&fg, &handleRECT, 0, handleRECT.H() / 4.0f, true);
 }
-	
 
 double IScrollbar::GetCurrentPosPercent()
 {
@@ -1280,42 +1279,42 @@ void IPanelTabs::OnMouseDown(int x, int y, IMouseMod* pMod)
 {
     int i, n = mTabs.GetSize();
     int hit = -1;
-    
+
     for (i = 0; i < n; ++i)
     {
-        if (mTabs.Get(i)->mRECT.Contains(x, y))
-        {
-            hit = i;
-            mValue = (double) i / (double) (n - 1);
-            
-            for (int t = 0; t < n; t++)
-            {
-                if (t == i)
-                {
-                    for (int p = 0; p < mTabs.Get(t)->mControls.GetSize(); p++)
-                    {
-                        mPlug->GetGUI()->HideControl(mTabs.Get(t)->mControls.Get()[p], false);
-                    }
-                }
-                else
-                {
-                    for (int p = 0; p < mTabs.Get(t)->mControls.GetSize(); p++)
-                    {
-                        mPlug->GetGUI()->HideControl(mTabs.Get(t)->mControls.Get()[p], true);
-                    }
-                }
-                
-            }
-            
-            break;
-        }
+	if (mTabs.Get(i)->mRECT.Contains(x, y))
+	{
+	    hit = i;
+	    mValue = (double) i / (double) (n - 1);
+
+	    for (int t = 0; t < n; t++)
+	    {
+		if (t == i)
+		{
+		    for (int p = 0; p < mTabs.Get(t)->mControls.GetSize(); p++)
+		    {
+			mPlug->GetGUI()->HideControl(mTabs.Get(t)->mControls.Get()[p], false);
+		    }
+		}
+		else
+		{
+		    for (int p = 0; p < mTabs.Get(t)->mControls.GetSize(); p++)
+		    {
+			mPlug->GetGUI()->HideControl(mTabs.Get(t)->mControls.Get()[p], true);
+		    }
+		}
+
+	    }
+
+	    break;
+	}
     }
-    
+
     if (hit != -1)
     {
-        mActive = hit;
+	mActive = hit;
     }
-    
+
     SetDirty();
 }
 
@@ -1324,13 +1323,12 @@ bool IPanelTabs::Draw(IGraphics *pGraphics)
 	pGraphics->FillIRect(&mBGColor, &mRECT);
     for (int t = 0; t < mTabs.GetSize(); t++)
     {
-        if (t == mActive) {
-            pGraphics->FillIRect(&mOnColor, &mTabs.Get(t)->mRECT);
-        }
-        pGraphics->DrawRect(&mFGColor, &mTabs.Get(t)->mRECT);
-        pGraphics->DrawIText(&mText, mTabs.Get(t)->mLabel.Get(), &mTabs.Get(t)->mRECT);
+	if (t == mActive) {
+	    pGraphics->FillIRect(&mOnColor, &mTabs.Get(t)->mRECT);
+	}
+	pGraphics->DrawRect(&mFGColor, &mTabs.Get(t)->mRECT);
+	pGraphics->DrawIText(&mText, mTabs.Get(t)->mLabel.Get(), &mTabs.Get(t)->mRECT);
     }
-    
+
     return true;
 }
-
