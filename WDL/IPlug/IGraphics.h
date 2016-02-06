@@ -156,6 +156,7 @@ public:
   IControl* GetControl(int idx) { return mControls.Get(idx); }
   int GetNControls() { return mControls.GetSize(); }
   void HideControl(int paramIdx, bool hide);
+  void HideControl(IControl *pControl, bool hide);
   void GrayOutControl(int paramIdx, bool gray);
 
   // Normalized means the value is in [0, 1].

@@ -1,8 +1,10 @@
 #ifndef _ICONTROL_
 #define _ICONTROL_
 
+#include <vector>
 #include "IPlugBase.h"
 #include "IGraphics.h"
+#include "wdlstring.h"
 
 // A control is anything on the GUI, it could be a static bitmap, or
 // something that moves or changes.  The control could manipulate
@@ -21,7 +23,7 @@ public:
   IControl(IPlugBase* pPlug, IRECT pR, int paramIdx = -1, IChannelBlend blendMethod = IChannelBlend::kBlendNone)
     : mPlug(pPlug), mRECT(pR), mTargetRECT(pR), mParamIdx(paramIdx), mValue(0.0), mDefaultValue(-1.0),
       mBlend(blendMethod), mDirty(true), mHide(false), mGrayed(false), mDisablePrompt(true), mDblAsSingleClick(false),
-      mClampLo(0.0), mClampHi(1.0), mMOWhenGreyed(false), mTextEntryLength(DEFAULT_TEXT_ENTRY_LEN), 
+      mClampLo(0.0), mClampHi(1.0), mMOWhenGreyed(false), mTextEntryLength(DEFAULT_TEXT_ENTRY_LEN),
       mValDisplayControl(0), mNameDisplayControl(0), mTooltip("") {}
 
   virtual ~IControl() {}
@@ -47,7 +49,7 @@ public:
   // Ask the IGraphics object to open an edit box so the user can enter a value for this control.
   void PromptUserInput();
   void PromptUserInput(IRECT* pTextRect);
-  
+
   inline void SetTooltip(const char* tooltip) { mTooltip.Set(tooltip); }
   inline const char* GetTooltip() const { return mTooltip.Get(); }
 
@@ -61,6 +63,7 @@ public:
   int GetTextEntryLength() { return mTextEntryLength; }
   void SetTextEntryLength(int len) { mTextEntryLength = len;  }
   void SetText(IText* txt) { mText = *txt; }
+  void SetRECT(IRECT pR) { mRECT = pR; mTargetRECT = pR; }
   IRECT* GetRECT() { return &mRECT; }       // The draw area for this control.
   IRECT* GetTargetRECT() { return &mTargetRECT; } // The mouse target area (default = draw area).
   void SetTargetArea(IRECT pR) { mTargetRECT = pR; }
@@ -78,7 +81,7 @@ public:
   virtual bool IsHit(int x, int y) { return mTargetRECT.Contains(x, y); }
 
   void SetBlendMethod(IChannelBlend::EBlendMethod blendMethod) { mBlend = IChannelBlend(blendMethod); }
-  
+
   void SetValDisplayControl(IControl* pValDisplayControl) { mValDisplayControl = pValDisplayControl; }
   void SetNameDisplayControl(IControl* pNameDisplayControl) { mNameDisplayControl = pNameDisplayControl; }
 
@@ -96,19 +99,24 @@ public:
   // IPlugBase::OnIdle which is called from the audio processing thread.
   // Only active if USE_IDLE_CALLS is defined.
   virtual void OnGUIIdle() {}
-  
+
+  // This is required to Attach any nested controls this control may
+  // have to the IGraphics context.
+  virtual void AttachNestedControls(IGraphics *pGraphics) {}
+  virtual std::vector<IControl *> *GetNestedControls() { return NULL; }
+
   // a struct that contain a parameter index and normalized value
-  struct AuxParam 
+  struct AuxParam
   {
     double mValue;
     int mParamIdx;
-    
+
     AuxParam(int idx) : mParamIdx(idx)
     {
       assert(idx > -1); // no negative params please
     }
   };
-  
+
   // return a pointer to the AuxParam instance at idx in the mAuxParams array
   AuxParam* GetAuxParam(int idx);
   // return the index of the auxillary parameter that holds the paramIdx
@@ -118,7 +126,7 @@ public:
   virtual void SetAuxParamValueFromPlug(int auxParamIdx, double value); // can override if nessecary
   void SetAllAuxParamsFromGUI();
   int NAuxParams() { return mAuxParams.GetSize(); }
-  
+
   IPlugBase* GetPlug() { return mPlug; }
   IGraphics* GetGUI() { return mPlug->GetGUI(); }
 
@@ -128,7 +136,7 @@ protected:
   IPlugBase* mPlug;
   IRECT mRECT, mTargetRECT;
   int mParamIdx;
-  
+
   WDL_TypedBuf<AuxParam> mAuxParams;
   double mValue, mDefaultValue, mClampLo, mClampHi;
   bool mDirty, mHide, mGrayed, mRedraw, mDisablePrompt, mClamped, mDblAsSingleClick, mMOWhenGreyed;
@@ -158,11 +166,11 @@ class IBitmapControl : public IControl
 {
 public:
   IBitmapControl(IPlugBase* pPlug, int x, int y, int paramIdx, IBitmap* pBitmap,
-                 IChannelBlend::EBlendMethod blendMethod = IChannelBlend::kBlendNone)
+		 IChannelBlend::EBlendMethod blendMethod = IChannelBlend::kBlendNone)
     : IControl(pPlug, IRECT(x, y, pBitmap), paramIdx, blendMethod), mBitmap(*pBitmap) {}
 
   IBitmapControl(IPlugBase* pPlug, int x, int y, IBitmap* pBitmap,
-                 IChannelBlend::EBlendMethod blendMethod = IChannelBlend::kBlendNone)
+		 IChannelBlend::EBlendMethod blendMethod = IChannelBlend::kBlendNone)
     : IControl(pPlug, IRECT(x, y, pBitmap), -1, blendMethod), mBitmap(*pBitmap) {}
 
   virtual ~IBitmapControl() {}
@@ -178,7 +186,7 @@ class ISwitchControl : public IBitmapControl
 {
 public:
   ISwitchControl(IPlugBase* pPlug, int x, int y, int paramIdx, IBitmap* pBitmap,
-                 IChannelBlend::EBlendMethod blendMethod = IChannelBlend::kBlendNone)
+		 IChannelBlend::EBlendMethod blendMethod = IChannelBlend::kBlendNone)
     : IBitmapControl(pPlug, x, y, paramIdx, pBitmap, blendMethod) {}
   ~ISwitchControl() {}
 
@@ -191,14 +199,14 @@ class ISwitchPopUpControl : public ISwitchControl
 {
 public:
   ISwitchPopUpControl(IPlugBase* pPlug, int x, int y, int paramIdx, IBitmap* pBitmap,
-                 IChannelBlend::EBlendMethod blendMethod = IChannelBlend::kBlendNone)
+		 IChannelBlend::EBlendMethod blendMethod = IChannelBlend::kBlendNone)
   : ISwitchControl(pPlug, x, y, paramIdx, pBitmap, blendMethod)
   {
     mDisablePrompt = false;
   }
-  
+
   ~ISwitchPopUpControl() {}
-  
+
   void OnMouseDown(int x, int y, IMouseMod* pMod);
 };
 
@@ -207,12 +215,12 @@ class ISwitchFramesControl : public ISwitchControl
 {
 public:
   ISwitchFramesControl(IPlugBase* pPlug, int x, int y, int paramIdx, IBitmap* pBitmap, bool imagesAreHorizontal = false,
-                       IChannelBlend::EBlendMethod blendMethod = IChannelBlend::kBlendNone);
-  
+		       IChannelBlend::EBlendMethod blendMethod = IChannelBlend::kBlendNone);
+
   ~ISwitchFramesControl() {}
-  
+
   void OnMouseDown(int x, int y, IMouseMod* pMod);
-  
+
 protected:
   WDL_TypedBuf<IRECT> mRECTs;
 };
@@ -234,7 +242,7 @@ class IRadioButtonsControl : public IControl
 {
 public:
   IRadioButtonsControl(IPlugBase* pPlug, IRECT pR, int paramIdx, int nButtons, IBitmap* pBitmap,
-                       EDirection direction = kVertical, bool reverse = false);
+		       EDirection direction = kVertical, bool reverse = false);
   ~IRadioButtonsControl() {}
 
   void OnMouseDown(int x, int y, IMouseMod* pMod);
@@ -261,7 +269,7 @@ class IFaderControl : public IControl
 {
 public:
   IFaderControl(IPlugBase* pPlug, int x, int y, int len, int paramIdx, IBitmap* pBitmap,
-                EDirection direction = kVertical, bool onlyHandle = false);
+		EDirection direction = kVertical, bool onlyHandle = false);
   ~IFaderControl() {}
 
   int GetLength() const { return mLen; }
@@ -277,7 +285,7 @@ public:
   virtual void OnMouseWheel(int x, int y, IMouseMod* pMod, int d);
 
   virtual bool Draw(IGraphics* pGraphics);
-  
+
   virtual bool IsHit(int x, int y);
 
 protected:
@@ -295,7 +303,7 @@ class IKnobControl : public IControl
 {
 public:
   IKnobControl(IPlugBase* pPlug, IRECT pR, int paramIdx, EDirection direction = kVertical,
-               double gearing = DEFAULT_GEARING)
+	       double gearing = DEFAULT_GEARING)
     : IControl(pPlug, pR, paramIdx), mDirection(direction), mGearing(gearing) {}
   virtual ~IKnobControl() {}
 
@@ -313,9 +321,9 @@ class IKnobLineControl : public IKnobControl
 {
 public:
   IKnobLineControl(IPlugBase* pPlug, IRECT pR, int paramIdx,
-                   const IColor* pColor, double innerRadius = 0.0, double outerRadius = 0.0,
-                   double minAngle = -0.75 * PI, double maxAngle = 0.75 * PI,
-                   EDirection direction = kVertical, double gearing = DEFAULT_GEARING);
+		   const IColor* pColor, double innerRadius = 0.0, double outerRadius = 0.0,
+		   double minAngle = -0.75 * PI, double maxAngle = 0.75 * PI,
+		   EDirection direction = kVertical, double gearing = DEFAULT_GEARING);
   ~IKnobLineControl() {}
 
   bool Draw(IGraphics* pGraphics);
@@ -330,8 +338,8 @@ class IKnobRotaterControl : public IKnobControl
 {
 public:
   IKnobRotaterControl(IPlugBase* pPlug, int x, int y, int paramIdx, IBitmap* pBitmap,
-                      double minAngle = -0.75 * PI, double maxAngle = 0.75 * PI, int yOffsetZeroDeg = 0,
-                      EDirection direction = kVertical, double gearing = DEFAULT_GEARING)
+		      double minAngle = -0.75 * PI, double maxAngle = 0.75 * PI, int yOffsetZeroDeg = 0,
+		      EDirection direction = kVertical, double gearing = DEFAULT_GEARING)
     : IKnobControl(pPlug, IRECT(x, y, pBitmap), paramIdx, direction, gearing),
       mBitmap(*pBitmap), mMinAngle(minAngle), mMaxAngle(maxAngle), mYOffset(yOffsetZeroDeg) {}
   ~IKnobRotaterControl() {}
@@ -349,7 +357,7 @@ class IKnobMultiControl : public IKnobControl
 {
 public:
   IKnobMultiControl(IPlugBase* pPlug, int x, int y, int paramIdx, IBitmap* pBitmap,
-                    EDirection direction = kVertical, double gearing = DEFAULT_GEARING)
+		    EDirection direction = kVertical, double gearing = DEFAULT_GEARING)
     : IKnobControl(pPlug, IRECT(x, y, pBitmap), paramIdx, direction, gearing), mBitmap(*pBitmap) {}
   ~IKnobMultiControl() {}
 
@@ -365,9 +373,9 @@ class IKnobRotatingMaskControl : public IKnobControl
 {
 public:
   IKnobRotatingMaskControl(IPlugBase* pPlug, int x, int y, int paramIdx,
-                           IBitmap* pBase, IBitmap* pMask, IBitmap* pTop,
-                           double minAngle = -0.75 * PI, double maxAngle = 0.75 * PI,
-                           EDirection direction = kVertical, double gearing = DEFAULT_GEARING)
+			   IBitmap* pBase, IBitmap* pMask, IBitmap* pTop,
+			   double minAngle = -0.75 * PI, double maxAngle = 0.75 * PI,
+			   EDirection direction = kVertical, double gearing = DEFAULT_GEARING)
     : IKnobControl(pPlug, IRECT(x, y, pBase), paramIdx, direction, gearing),
       mBase(*pBase), mMask(*pMask), mTop(*pTop), mMinAngle(minAngle), mMaxAngle(maxAngle) {}
   ~IKnobRotatingMaskControl() {}
@@ -464,7 +472,7 @@ public:
   enum EFileSelectorState { kFSNone, kFSSelecting, kFSDone };
 
   IFileSelectorControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IBitmap* pBitmap,
-                       EFileAction action, char* dir = "", char* extensions = "")     // extensions = "txt wav" for example.
+		       EFileAction action, char* dir = "", char* extensions = "")     // extensions = "txt wav" for example.
     : IControl(pPlug, pR, paramIdx), mBitmap(*pBitmap),
       mFileAction(action), mDir(dir), mExtensions(extensions), mState(kFSNone) {}
   ~IFileSelectorControl() {}
@@ -482,6 +490,194 @@ protected:
   WDL_String mDir, mFile, mExtensions;
   EFileAction mFileAction;
   EFileSelectorState mState;
+};
+
+
+class IScrollbar;
+class IScrollbarListener
+{
+public:
+	IScrollbarListener() {};
+	~IScrollbarListener() {};
+	// Callback function that is called when the Scrollbar position changes. Inherit from
+	// IScrollbarListener in your IControl class and implement to get notified about changes
+	// to the scrollbar position.
+	virtual void NotifyParentScrollPosChange(IScrollbar *scrollbar, int pos) = 0;
+};
+
+class IScrollbar : public IControl
+{
+public:
+	IScrollbar(IPlugBase *pPlug, IRECT *pR, IScrollInfo *si, const IColor *pFG, IScrollbarListener* listener, bool isVertical);
+	~IScrollbar();
+
+	bool isVertical() { return vertical; }
+
+	virtual void OnMouseDown(int x, int y, IMouseMod* pMod);
+	virtual void OnMouseDrag(int x, int y, int dX, int dY, IMouseMod* pMod);
+	virtual void OnMouseWheel(int x, int y, IMouseMod* pMod, int d);
+	virtual bool OnKeyDown(int x, int y, int key);
+
+	IRECT* GetRECT() { return &mRECT; }       // The draw area for this control.
+	IRECT* GetTargetRECT() { return &mTargetRECT; } // The mouse target area (default = draw area).
+	void SetTargetArea(IRECT pR) { mTargetRECT = pR; }
+	bool SetScrollInfo(IScrollInfo *si);
+	bool GetScrollInfo(IScrollInfo *si);
+
+	bool Draw(IGraphics *pGraphics);
+
+	IPlugBase* GetPlug() { return mPlug; }
+	IGraphics* GetGUI() { return mPlug->GetGUI(); }
+
+private:
+	IScrollInfo si;
+	const IColor fg;
+	IScrollbarListener *mListener;
+	bool vertical;
+	IRECT mTargetRECT;
+	IRECT mLeftThumb, mRightThumb, mTopThumb, mBottomThumb;
+	int fps;
+	int timer;
+
+	double GetCurrentPosPercent();
+	void GetThumbSliderRect(IRECT &theThumbSliderRect);
+	void SetScrollPos(int pos);
+	int GetThumbSliderLength();
+};
+
+class IListItem {
+public:
+	IListItem()
+		: mSelected(false) {};
+	virtual ~IListItem() {};
+	void SetSelected(bool select)
+	{
+		mSelected = select;
+	}
+	bool GetSelected() const
+	{
+		return mSelected;
+	}
+
+	virtual bool Draw(IGraphics* pGraphics) = 0;
+	virtual void SetItemRECT(IRECT pR) = 0;
+	virtual bool IsItemHit(int x, int y) = 0;
+private:
+	bool mSelected;
+};
+
+class IListBoxControl : public IControl, public IScrollbarListener {
+public:
+	IListBoxControl(IPlugBase* pPlug, IRECT pR, int paramIdx = -1, IControl *header = NULL, int itemWidth = 100, int itemHeight = DEFAULT_TEXT_SIZE, int scrollbarWidth = DEFAULT_SCROLLBAR_WIDTH, bool multicolumn = false, bool multiselect = false,
+		const IColor *pBG = &COLOR_BLACK, const IColor *pFG = &COLOR_WHITE);
+    virtual ~IListBoxControl() {};
+	virtual void NotifyParentScrollPosChange(IScrollbar *sb, int pos) override;
+    virtual bool Draw(IGraphics *pGraphics) override;
+	IScrollbar *GetVScrollbar() { return mVScrollbar; }
+	IScrollbar *GetHScrollbar() { return mHScrollbar; }
+	virtual void AttachNestedControls(IGraphics *pGraphics) override;
+    virtual std::vector<IControl *> *GetNestedControls() override
+    {
+	std::vector<IControl *> *nested = new std::vector<IControl *>;
+		if (mVScrollbar)
+			nested->push_back(mVScrollbar);
+		if (mHScrollbar)
+			nested->push_back(mHScrollbar);
+		if (mHeader)
+			nested->push_back(mHeader);
+
+	return nested;
+    }
+	void AddItem(IListItem *item);
+	void ClearItems();
+	void SetItemHeight(int height);
+	void SetItemWidth(int width);
+
+	virtual void OnMouseDown(int x, int y, IMouseMod* pMod) override;
+	virtual void OnMouseDrag(int x, int y, int dX, int dY, IMouseMod* pMod) override;
+	virtual void OnMouseWheel(int x, int y, IMouseMod* pMod, int d) override;
+	virtual bool OnKeyDown(int x, int y, int key) override;
+private:
+	IRECT mArea;
+	bool mMultiColumn;
+	bool mMultiSelection;
+	IControl *mHeader;
+    IScrollbar *mVScrollbar, *mHScrollbar;
+	IScrollInfo mVScrollInfo, mHScrollInfo;
+    int mVMin, mVMax, mVPos, mVPage;
+	int mHMin, mHMax, mHPos, mHPage;
+	int mItemHeight, mItemWidth;
+	int mWidth, mHeight;
+	int mScrollbarWidth;
+	const IColor mBackgroundColor;
+	const IColor mForegroundColor;
+	typedef std::vector<IListItem *> Items;
+	Items mItems;
+	typedef std::vector<bool> Selected;
+	Selected mSelected;
+};
+
+struct ITab
+{
+    IRECT mRECT;
+    WDL_TypedBuf<IControl *> mControls;
+    WDL_String mLabel;
+
+    ITab(IRECT rect, const char* pLabel)
+    {
+	mRECT = rect;
+	mLabel.Set(pLabel);
+    }
+
+    void Add(IControl *pC)
+    {
+	mControls.Add(pC);
+	std::vector<IControl *> *nested = pC->GetNestedControls();
+	if (nested) {
+	    for (int i=0; i < nested->size(); i++) {
+		mControls.Add((*nested)[i]);
+	    }
+	}
+    }
+
+};
+
+class IPanelTabs : public IControl
+{
+private:
+    WDL_PtrList<ITab> mTabs;
+    IColor mBGColor, mFGColor, mOnColor;
+    int mActive;
+
+public:
+
+    IPanelTabs(IPlugBase *pPlug, IRECT tabsRect, IText *pText, const IColor *pBGColor, const IColor *pFGColor, const IColor *pOnColor)
+    : IControl(pPlug, tabsRect, -1)
+    , mBGColor(*pBGColor)
+    , mFGColor(*pFGColor)
+    , mOnColor(*pOnColor)
+    , mActive(0)
+    {
+	mDblAsSingleClick = true;
+	mText = *pText;
+	mText.mAlign = IText::kAlignCenter;
+    }
+
+    ~IPanelTabs()
+    {
+	mTabs.Empty(true);
+    }
+
+    void AddTab(ITab* tab)
+    {
+	mTabs.Add(tab);
+    }
+
+    void OnMouseWheel(int x, int y, IMouseMod* pMod) {}
+
+    void OnMouseDown(int x, int y, IMouseMod* pMod) override;
+
+    bool Draw(IGraphics *pGraphics) override;
 };
 
 #endif

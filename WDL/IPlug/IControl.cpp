@@ -37,8 +37,8 @@ void IControl::SetDirty(bool pushParamToPlug)
   {
     mPlug->SetParameterFromGUI(mParamIdx, mValue);
     IParam* pParam = mPlug->GetParam(mParamIdx);
-    
-    if (mValDisplayControl) 
+
+    if (mValDisplayControl)
     {
       WDL_String plusLabel;
       char str[32];
@@ -46,11 +46,11 @@ void IControl::SetDirty(bool pushParamToPlug)
       plusLabel.Set(str, 32);
       plusLabel.Append(" ", 32);
       plusLabel.Append(pParam->GetLabelForHost(), 32);
-      
+
       ((ITextControl*)mValDisplayControl)->SetTextFromPlug(plusLabel.Get());
     }
-    
-    if (mNameDisplayControl) 
+
+    if (mNameDisplayControl)
     {
       ((ITextControl*)mNameDisplayControl)->SetTextFromPlug((char*) pParam->GetNameForHost());
     }
@@ -86,7 +86,7 @@ void IControl::OnMouseDown(int x, int y, IMouseMod* pMod)
     SetDirty();
   }
   #endif
-  
+
   if (pMod->R) {
 		PromptUserInput();
 	}
@@ -153,7 +153,7 @@ int IControl::AuxParamIdx(int paramIdx)
     if(GetAuxParam(i)->mParamIdx == paramIdx)
       return i;
   }
-  
+
   return -1;
 }
 
@@ -165,7 +165,7 @@ void IControl::AddAuxParam(int paramIdx)
 void IControl::SetAuxParamValueFromPlug(int auxParamIdx, double value)
 {
   AuxParam* auxParam = GetAuxParam(auxParamIdx);
-  
+
   if (auxParam->mValue != value)
   {
     auxParam->mValue = value;
@@ -234,29 +234,29 @@ ISwitchFramesControl::ISwitchFramesControl(IPlugBase* pPlug, int x, int y, int p
   : ISwitchControl(pPlug, x, y, paramIdx, pBitmap, blendMethod)
 {
   mDisablePrompt = false;
-  
+
   for(int i = 0; i < pBitmap->N; i++)
   {
     if (imagesAreHorizontal)
-      mRECTs.Add(mRECT.SubRectHorizontal(pBitmap->N, i)); 
+      mRECTs.Add(mRECT.SubRectHorizontal(pBitmap->N, i));
     else
-      mRECTs.Add(mRECT.SubRectVertical(pBitmap->N, i)); 
+      mRECTs.Add(mRECT.SubRectVertical(pBitmap->N, i));
   }
 }
 
 void ISwitchFramesControl::OnMouseDown(int x, int y, IMouseMod* pMod)
 {
   int n = mRECTs.GetSize();
-  
-  for (int i = 0; i < n; i++) 
+
+  for (int i = 0; i < n; i++)
   {
-    if (mRECTs.Get()[i].Contains(x, y)) 
+    if (mRECTs.Get()[i].Contains(x, y))
     {
       mValue = (double) i / (double) (n - 1);
       break;
     }
   }
-  
+
   SetDirty();
 }
 
@@ -285,19 +285,19 @@ IRadioButtonsControl::IRadioButtonsControl(IPlugBase* pPlug, IRECT pR, int param
 {
   mRECTs.Resize(nButtons);
   int h = int((double) pBitmap->H / (double) pBitmap->N);
-  
-  if (reverse) 
+
+  if (reverse)
   {
     if (direction == kHorizontal)
     {
       int dX = int((double) (pR.W() - nButtons * pBitmap->W) / (double) (nButtons - 1));
       int x = mRECT.R - pBitmap->W - dX;
       int y = mRECT.T;
-      
+
       for (int i = 0; i < nButtons; ++i)
       {
-        mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
-        x -= pBitmap->W + dX;
+	mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
+	x -= pBitmap->W + dX;
       }
     }
     else
@@ -305,26 +305,26 @@ IRadioButtonsControl::IRadioButtonsControl(IPlugBase* pPlug, IRECT pR, int param
       int dY = int((double) (pR.H() - nButtons * h) /  (double) (nButtons - 1));
       int x = mRECT.L;
       int y = mRECT.B - h - dY;
-      
+
       for (int i = 0; i < nButtons; ++i)
       {
-        mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
-        y -= h + dY;
+	mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
+	y -= h + dY;
       }
     }
-    
+
   }
   else
   {
     int x = mRECT.L, y = mRECT.T;
-    
+
     if (direction == kHorizontal)
     {
       int dX = int((double) (pR.W() - nButtons * pBitmap->W) / (double) (nButtons - 1));
       for (int i = 0; i < nButtons; ++i)
       {
-        mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
-        x += pBitmap->W + dX;
+	mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
+	x += pBitmap->W + dX;
       }
     }
     else
@@ -332,8 +332,8 @@ IRadioButtonsControl::IRadioButtonsControl(IPlugBase* pPlug, IRECT pR, int param
       int dY = int((double) (pR.H() - nButtons * h) /  (double) (nButtons - 1));
       for (int i = 0; i < nButtons; ++i)
       {
-        mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
-        y += h + dY;
+	mRECTs.Get()[i] = IRECT(x, y, x + pBitmap->W, y + h);
+	y += h + dY;
       }
     }
   }
@@ -342,7 +342,7 @@ IRadioButtonsControl::IRadioButtonsControl(IPlugBase* pPlug, IRECT pR, int param
 void IRadioButtonsControl::OnMouseDown(int x, int y, IMouseMod* pMod)
 {
   #ifdef PROTOOLS
-  if (pMod->A) 
+  if (pMod->A)
   {
     if (mDefaultValue >= 0.0)
     {
@@ -438,7 +438,7 @@ IRECT IFaderControl::GetHandleRECT(double value) const
 void IFaderControl::OnMouseDown(int x, int y, IMouseMod* pMod)
 {
   #ifdef PROTOOLS
-  if (pMod->A) 
+  if (pMod->A)
   {
     if (mDefaultValue >= 0.0)
     {
@@ -480,7 +480,7 @@ void IFaderControl::OnMouseWheel(int x, int y, IMouseMod* pMod, int d)
   {
     mValue += 0.01 * d;
   }
-  
+
   SetDirty();
 }
 
@@ -503,23 +503,23 @@ bool IFaderControl::Draw(IGraphics* pGraphics)
   return pGraphics->DrawBitmap(&mBitmap, &r, 1, &mBlend);
 }
 
-bool IFaderControl::IsHit(int x, int y) 
+bool IFaderControl::IsHit(int x, int y)
 {
   if(mOnlyHandle)
   {
     IRECT r = GetHandleRECT();
-    return r.Contains(x, y); 
+    return r.Contains(x, y);
   }
-  else 
+  else
   {
-    return mTargetRECT.Contains(x, y); 
+    return mTargetRECT.Contains(x, y);
   }
 }
 
 void IKnobControl::OnMouseDrag(int x, int y, int dX, int dY, IMouseMod* pMod)
 {
   double gearing = mGearing;
-  
+
   #ifdef PROTOOLS
     #ifdef OS_WIN
       if (pMod->C) gearing *= 10.0;
@@ -529,7 +529,7 @@ void IKnobControl::OnMouseDrag(int x, int y, int dX, int dY, IMouseMod* pMod)
   #else
     if (pMod->C || pMod->S) gearing *= 10.0;
   #endif
-  
+
   if (mDirection == kVertical)
   {
     mValue += (double) dY / (double) (mRECT.T - mRECT.B) / gearing;
@@ -559,13 +559,13 @@ void IKnobControl::OnMouseWheel(int x, int y, IMouseMod* pMod, int d)
   {
     mValue += 0.01 * d;
   }
-  
+
   SetDirty();
 }
 
 IKnobLineControl::IKnobLineControl(IPlugBase* pPlug, IRECT pR, int paramIdx,
-                                   const IColor* pColor, double innerRadius, double outerRadius,
-                                   double minAngle, double maxAngle, EDirection direction, double gearing)
+				   const IColor* pColor, double innerRadius, double outerRadius,
+				   double minAngle, double maxAngle, EDirection direction, double gearing)
   :   IKnobControl(pPlug, pR, paramIdx, direction, gearing),
       mColor(*pColor)
 {
@@ -767,4 +767,569 @@ bool IFileSelectorControl::IsDirty()
     return true;
   }
   return false;
+}
+
+IScrollbar::IScrollbar(IPlugBase *pPlug, IRECT *pR, IScrollInfo *si, const IColor *pFG, IScrollbarListener* listener, bool isVertical)
+	: IControl(pPlug, *pR), fg(*pFG), mListener(listener), vertical(isVertical), fps(0)
+{
+	if (si)
+		memcpy((void *)&this->si, si, sizeof(*si));
+	else
+		memset((void *)&this->si, 0, sizeof(*si));
+	if (pR)
+		memcpy((void *)&this->mRECT, pR, sizeof(*pR));
+	else
+		memset((void *)&this->mRECT, 0, sizeof(*pR));
+	mTargetRECT = mRECT;
+}
+
+IScrollbar::~IScrollbar()
+{
+}
+
+bool IScrollbar::SetScrollInfo(IScrollInfo * si)
+{
+	if (si)
+		memcpy(&this->si, si, sizeof(*si));
+	else
+		return false;
+
+	return true;
+}
+
+bool IScrollbar::GetScrollInfo(IScrollInfo *si) {
+	if (si)
+		*si = this->si;
+	else
+		return false;
+	return true;
+}
+
+bool IScrollbar::Draw(IGraphics *pGraphics)
+{
+	IRECT handleRECT;
+
+	if (fps == 0)
+		fps = pGraphics->FPS();
+	if (timer > 0) {
+		SetDirty();
+		Redraw();
+		timer--;
+	}
+	else
+	{
+		this->Hide(true);
+		return true;
+	}
+
+	GetThumbSliderRect(handleRECT);
+	if (vertical)
+		return pGraphics->FillRoundRect(&fg, &handleRECT, 0, handleRECT.W() / 4.0f, true);
+	else
+		return pGraphics->FillRoundRect(&fg, &handleRECT, 0, handleRECT.H() / 4.0f, true);
+}
+
+
+double IScrollbar::GetCurrentPosPercent()
+{
+	double   thePosPercent = 0.0f;
+	long    theCurPos = si.nPos - si.nMin;
+
+	// Compute the current position percent scrolled
+	double   theRange = (double)(si.nMax - si.nMin + 1.0f);
+	thePosPercent = theCurPos / theRange;
+	return (thePosPercent);
+}
+
+int IScrollbar::GetThumbSliderLength()
+{
+	return (int)(((double)si.nPage / ((double)si.nMax + 1.0f)) * (vertical ? (double)mTargetRECT.H() - 1: (double)mTargetRECT.W() - 1));
+}
+
+void IScrollbar::GetThumbSliderRect(IRECT &thumbSliderRect)
+{
+	long    l;
+	float   pctScroll;
+	long    thumbSliderLength;
+
+	thumbSliderRect = mTargetRECT;
+
+	// Get the percentage of the scrollbar position
+	pctScroll = GetCurrentPosPercent();
+
+	thumbSliderLength = GetThumbSliderLength();
+
+	if (vertical)
+	{
+		// vertical scrollbar
+		thumbSliderRect.T += (long)((float)thumbSliderRect.H() * pctScroll);
+		thumbSliderRect.B = thumbSliderRect.T + thumbSliderLength;
+	}
+	else
+	{
+		// horizontal scrollbar
+		thumbSliderRect.L += (long)((float)thumbSliderRect.W() * pctScroll);
+		thumbSliderRect.R = thumbSliderRect.L + thumbSliderLength;
+	}
+
+
+}
+
+void IScrollbar::SetScrollPos(int pos)
+{
+	// bounds checking:
+	bool dirty = false;
+	int newPos = si.nMin;
+	if (pos < si.nMin)
+		newPos = si.nMin;
+	else if (si.nMax < si.nPage)
+		newPos = si.nMin;
+	else if (!vertical && pos > si.nMax - si.nPage + 1)
+		newPos = si.nMax - si.nPage + 1;
+	else if (vertical && pos > si.nMax - si.nPage)
+		newPos = si.nMax - si.nPage;
+	else
+		newPos = pos;
+
+	if (newPos != si.nPos) {
+		si.nPos = newPos;
+		dirty = true;
+	}
+
+	if (dirty) {
+		timer = fps * 4;
+		SetDirty();
+		Redraw();
+		this->Hide(false);
+	}
+
+	if (mListener)
+		mListener->NotifyParentScrollPosChange(this, si.nPos);
+}
+
+void IScrollbar::OnMouseDown(int x, int y, IMouseMod * pMod)
+{
+	if (vertical) {
+		SetScrollPos(((double)(y - mTargetRECT.T) / (double)mTargetRECT.H()) * ((double)si.nMax - (double)si.nMin));
+	}
+	else {
+		SetScrollPos(((double)(x - mTargetRECT.L) / (double)mTargetRECT.W()) * ((double)si.nMax - (double)si.nMin));
+	}
+}
+
+void IScrollbar::OnMouseDrag(int x, int y, int dX, int dY, IMouseMod* pMod)
+{
+	if (vertical)
+	{
+		int itemHeight = (double)mTargetRECT.H() / (double)si.nPage;
+		if (itemHeight <= 0)
+			return;
+		static int cumulative = 0;
+		cumulative += dY;
+		if ((cumulative / itemHeight) >= 1 || (cumulative / itemHeight) <= -1)
+		{
+			SetScrollPos(si.nPos + (cumulative / itemHeight));
+			cumulative = 0;
+		}
+	}
+	else
+	{
+		int itemWidth = (double)mTargetRECT.W() / (double)si.nPage;
+		if (itemWidth <= 0)
+			return;
+		static int cumulative = 0;
+		cumulative += dX;
+		if ((cumulative / itemWidth) >= 1 || (cumulative / itemWidth) <= -1)
+		{
+			SetScrollPos(si.nPos + (cumulative / itemWidth));
+			cumulative = 0;
+		}
+	}
+
+}
+
+void IScrollbar::OnMouseWheel(int x, int y, IMouseMod* pMod, int d)
+{
+	if (vertical)
+		SetScrollPos(si.nPos + ((d < 0) ? si.nPage : -si.nPage));
+	else
+		SetScrollPos(si.nPos + ((d < 0) ? 1 : -1));
+}
+
+bool IScrollbar::OnKeyDown(int x, int y, int key)
+{
+	switch (key) {
+	case KEY_LEFTARROW:
+	case KEY_UPARROW:
+		SetScrollPos(si.nPos - 1);
+		break;
+	case KEY_RIGHTARROW:
+	case KEY_DOWNARROW:
+		SetScrollPos(si.nPos + 1);
+		break;
+	case KEY_HOME:
+		SetScrollPos(si.nMin);
+		break;
+	case KEY_END:
+		SetScrollPos(si.nMax);
+		break;
+	case KEY_PRIOR:
+		SetScrollPos(si.nPos - si.nPage);
+		break;
+	case KEY_NEXT:
+		SetScrollPos(si.nPos + si.nPage);
+		break;
+	default:
+		return false;
+	}
+	return true;
+}
+
+IListBoxControl::IListBoxControl(IPlugBase* pPlug, IRECT pR, int paramIdx, IControl *header, int itemWidth, int itemHeight, int scrollbarWidth, bool multicolumn, bool multiselect, const IColor *pBG, const IColor *pFG)
+	: IControl(pPlug, pR, paramIdx), mHeader(header), mVScrollbar(NULL), mHScrollbar(NULL), mItemWidth(itemWidth), mItemHeight(itemHeight), mScrollbarWidth(scrollbarWidth),
+	mVMin(0), mVMax(0), mVPos(0), mVPage(0), mHMin(0), mHMax(0), mHPos(0), mHPage(0), mMultiColumn(multicolumn), mMultiSelection(multiselect), mBackgroundColor(*pBG), mForegroundColor(*pFG)
+{
+	mArea = mRECT;
+	if (mHeader)
+	{
+		mArea.T += mHeader->GetRECT()->H() + 2;
+		IRECT *r = mHeader->GetRECT();
+		r->L = mArea.L;
+		r->R = mArea.R;
+		r->B = r->B + 1;
+		mHeader->SetRECT(*r);
+	}
+
+    mWidth = mRECT.W();
+	mHPage = mWidth / mItemWidth + ((mWidth % mItemWidth) > 0 ? 1 : 0);
+	mHeight = mRECT.H();
+	mVPage = mHeight / mItemHeight;
+
+	if (mMultiColumn)
+	{
+		mHScrollInfo.nMin = mHMin;
+		mHScrollInfo.nMax = mHMax;
+		mHScrollInfo.nPage = mHPage;
+		mHScrollInfo.nPos = mHPos;
+		IRECT hScrollBarRect(mArea.L + 2, mArea.B - mScrollbarWidth, mArea.R - 2, mArea.B);
+		mHScrollbar = new IScrollbar(pPlug, &hScrollBarRect, &mHScrollInfo, &mForegroundColor, this, false);
+	}
+	else
+	{
+		mVScrollInfo.nMin = mVMin;
+		mVScrollInfo.nMax = mVMax;
+		mVScrollInfo.nPage = mVPage;
+		mVScrollInfo.nPos = mVPos;
+		IRECT vScrollBarRect(mArea.R - mScrollbarWidth, mArea.T + 2, mArea.R - 1, mArea.B - 2);
+		mVScrollbar = new IScrollbar(pPlug, &vScrollBarRect, &mVScrollInfo, &mForegroundColor, this, true);
+	}
+}
+
+void IListBoxControl::NotifyParentScrollPosChange(IScrollbar * sb, int pos)
+{
+    // draw the control starting at mItemList[pos]
+	if (sb == mVScrollbar)
+		mVPos = pos;
+	else if (sb == mHScrollbar)
+		mHPos = pos;
+	Redraw();
+}
+
+bool IListBoxControl::Draw(IGraphics *pGraphics)
+{
+	pGraphics->FillIRect(&mBackgroundColor, &mArea);
+	if (mHeader)
+	{
+		pGraphics->FillIRect(&mForegroundColor, mHeader->GetRECT());
+		mHeader->Draw(pGraphics);
+	}
+	if (mMultiColumn)
+	{
+		for (int col = 0; col < mHPage; col++)
+		{
+			for (int row = 0; row < mVPage; row++)
+			{
+				IRECT itemRect(mArea.L + (col * mItemWidth), mArea.T + (row * mItemHeight), mArea.L + (col * mItemWidth) + mItemWidth, mArea.T + (row * mItemHeight) + mItemHeight);
+				if (mVPage * (mHPos + col) +  row < mItems.size() && mItems[(mHPos + col) * mVPage + row] != NULL)
+				{
+					mItems[(mHPos + col) * mVPage + row]->SetItemRECT(itemRect);
+					mItems[(mHPos + col) * mVPage + row]->Draw(pGraphics);
+				}
+				pGraphics->DrawRect(&mForegroundColor, &itemRect);
+			}
+		}
+		mHScrollbar->Draw(pGraphics);
+	}
+	else
+	{
+		for (int i = 0; i < mVPage; i++) {
+			IRECT itemRect(mArea.L, mArea.T + (i * mItemHeight), mArea.R, mArea.T + (i * mItemHeight) + mItemHeight);
+			if (mVPos + i < mItems.size() && mItems[mVPos + i] != NULL)
+			{
+				mItems[mVPos + i]->SetItemRECT(itemRect);
+				mItems[mVPos + i]->Draw(pGraphics);
+			}
+			pGraphics->DrawRect(&mForegroundColor, &itemRect);
+		}
+		mVScrollbar->Draw(pGraphics);
+	}
+    return true;
+}
+
+void IListBoxControl::AttachNestedControls(IGraphics * pGraphics)
+{
+	if (mMultiColumn)
+		pGraphics->AttachControl(mHScrollbar);
+	else
+		pGraphics->AttachControl(mVScrollbar);
+}
+
+void IListBoxControl::AddItem(IListItem *item)
+{
+	mItems.push_back(item);
+	mSelected.push_back(false);
+	if (mMultiColumn)
+	{
+		mHMax = mItems.size() / mVPage + (mItems.size() % mVPage > 0 ? 1 : 0);
+		mHScrollInfo.nMax = mHMax;
+		mHScrollbar->SetScrollInfo(&mHScrollInfo);
+	}
+	else
+	{
+		mVMax = mItems.size();
+		mVScrollInfo.nMax = mVMax;
+		mVScrollbar->SetScrollInfo(&mVScrollInfo);
+	}
+}
+
+void IListBoxControl::ClearItems()
+{
+	mItems.clear();
+	mSelected.clear();
+	if (mMultiColumn)
+	{
+		mHMax = 0; mHPos = 0;
+		mHScrollInfo.nPos = mHPos;
+		mHScrollInfo.nMax = mHMax;
+		mHScrollbar->SetScrollInfo(&mHScrollInfo);
+	}
+	else
+	{
+		mVMax = 0; mVPos = 0;
+		mVScrollInfo.nPos = mVPos;
+		mVScrollInfo.nMax = mVMax;
+		mVScrollbar->SetScrollInfo(&mVScrollInfo);
+	}
+	SetDirty();
+	Redraw();
+}
+
+void IListBoxControl::SetItemHeight(int height)
+{
+	mItemHeight = height;
+	mVPage = mHeight / mItemHeight;
+
+	mVScrollInfo.nMin = mVMin;
+	mVScrollInfo.nMax = mVMax;
+	mVScrollInfo.nPage = mVPage;
+	mVScrollInfo.nPos = mVPos;
+	mVScrollbar->SetScrollInfo(&mVScrollInfo);
+	SetDirty();
+	Redraw();
+}
+
+void IListBoxControl::SetItemWidth(int width)
+{
+	mWidth = mRECT.W();
+	mHPage = mWidth / mItemWidth + ((mWidth % mItemWidth) > 0 ? 1 : 0);
+
+	if (mMultiColumn)
+	{
+		mHScrollInfo.nMin = mHMin;
+		mHScrollInfo.nMax = mHMax;
+		mHScrollInfo.nPage = mHPage;
+		mHScrollInfo.nPos = mHPos;
+		mHScrollbar->SetScrollInfo(&mHScrollInfo);
+		SetDirty();
+		Redraw();
+	}
+}
+
+void IListBoxControl::OnMouseDown(int x, int y, IMouseMod * pMod)
+{
+	if (mMultiColumn)
+	{
+		if (!mHScrollbar->IsHidden() && mHScrollbar->IsHit(x, y)) {
+			mHScrollbar->OnMouseDown(x, y, pMod);
+		}
+		// select the item at x,y
+		int vPos = ((double)(y - mTargetRECT.T) / (double)mItemHeight); // (double)mTargetRECT.H()) * ((double)mVPage));
+		int hPos = ((double)(x - mTargetRECT.L) / (double)mItemWidth); // (double)mTargetRECT.W()) * ((double)mHPage));
+		if (vPos >= 0 && hPos >= 0 && ((mHPos + hPos) * mVPage + vPos) < mItems.size() && mItems[(mHPos + hPos) * mVPage + vPos]->IsItemHit(x, y))
+		{
+			// found the item, highlight it
+			mSelected[(mHPos + hPos) * mVPage + vPos] = !mSelected[(mHPos + hPos) * mVPage + vPos];
+			mItems[(mHPos + hPos) * mVPage + vPos]->SetSelected(mSelected[(mHPos + hPos) * mVPage + vPos]);
+
+			//IText *t = mItems[(mHPos + hPos) * mVPage + vPos]->GetText();
+			if (mSelected[(mHPos + hPos) * mVPage + vPos]) {
+				if (!mMultiSelection) {
+					for (int i = 0; i < mSelected.size(); i++)
+					{
+						if (i == (mHPos + hPos) * mVPage + vPos)
+							continue;
+						if (mSelected[i])
+						{
+							// was selected, unselect it and revert colors
+							mSelected[i] = false;
+							mItems[i]->SetSelected(mSelected[i]);
+							//IText *t = mItems[i]->GetText();
+							//IColor bg = t->mTextEntryFGColor;
+							//t->mTextEntryFGColor = t->mTextEntryBGColor;
+							//t->mTextEntryBGColor = bg;
+						}
+					}
+				}
+
+				//IColor fg = t->mTextEntryFGColor;
+				//t->mTextEntryFGColor = t->mTextEntryBGColor;
+				//t->mTextEntryBGColor = fg;
+			}
+			//else {
+			//	IColor bg = t->mTextEntryFGColor;
+			//	t->mTextEntryFGColor = t->mTextEntryBGColor;
+			//	t->mTextEntryBGColor = bg;
+			//}
+
+			SetDirty();
+			Redraw();
+		}
+	}
+	else
+	{
+		if (!mVScrollbar->IsHidden() && mVScrollbar->IsHit(x, y)) {
+			mVScrollbar->OnMouseDown(x, y, pMod);
+		}
+		// select the item at x,y
+		int nPos = ((double)(y - mTargetRECT.T) / (double)mItemHeight); //  (double)mTargetRECT.H()) * ((double)mVPage));
+		if (mVPos + nPos >= 0 && nPos < mItems.size() && mItems[mVPos + nPos]->IsItemHit(x, y))
+		{
+			// found the item, highlight it
+			mSelected[mVPos + nPos] = !mSelected[mVPos + nPos];
+			mItems[mVPos + nPos]->SetSelected(mSelected[mVPos + nPos]);
+			//IText *t = mItems[mVPos + nPos]->GetText();
+			if (mSelected[mVPos + nPos]) {
+				if (!mMultiSelection) {
+					for (int i = 0; i < mSelected.size(); i++)
+					{
+						if (i == mVPos + nPos)
+							continue;
+						if (mSelected[i])
+						{
+							// was selected, unselect it and revert colors
+							mSelected[i] = false;
+							mItems[i]->SetSelected(mSelected[i]);
+							//IText *t = mItems[i]->GetText();
+							//IColor bg = t->mTextEntryFGColor;
+							//t->mTextEntryFGColor = t->mTextEntryBGColor;
+							//t->mTextEntryBGColor = bg;
+						}
+					}
+				}
+				//IColor fg = t->mTextEntryFGColor;
+				//t->mTextEntryFGColor = t->mTextEntryBGColor;
+				//t->mTextEntryBGColor = fg;
+			}
+			//else
+			//{
+			//	IColor bg = t->mTextEntryFGColor;
+			//	t->mTextEntryFGColor = t->mTextEntryBGColor;
+			//	t->mTextEntryBGColor = bg;
+			//}
+			SetDirty();
+			Redraw();
+		}
+	}
+}
+
+void IListBoxControl::OnMouseDrag(int x, int y, int dX, int dY, IMouseMod * pMod)
+{
+	if (mMultiColumn)
+		mHScrollbar->OnMouseDrag(x, y, dX, dY, pMod);
+	else
+		mVScrollbar->OnMouseDrag(x, y, dX, dY, pMod);
+}
+
+void IListBoxControl::OnMouseWheel(int x, int y, IMouseMod * pMod, int d)
+{
+	if (mMultiColumn)
+		mHScrollbar->OnMouseWheel(x, y, pMod, d);
+	else
+		mVScrollbar->OnMouseWheel(x, y, pMod, d);
+}
+
+bool IListBoxControl::OnKeyDown(int x, int y, int key)
+{
+	if (mMultiColumn)
+		return mHScrollbar->OnKeyDown(x, y, key);
+	else
+		return mVScrollbar->OnKeyDown(x, y, key);
+}
+
+void IPanelTabs::OnMouseDown(int x, int y, IMouseMod* pMod)
+{
+    int i, n = mTabs.GetSize();
+    int hit = -1;
+
+    for (i = 0; i < n; ++i)
+    {
+	if (mTabs.Get(i)->mRECT.Contains(x, y))
+	{
+	    hit = i;
+	    mValue = (double) i / (double) (n - 1);
+
+	    for (int t = 0; t < n; t++)
+	    {
+		if (t == i)
+		{
+		    for (int p = 0; p < mTabs.Get(t)->mControls.GetSize(); p++)
+		    {
+			mPlug->GetGUI()->HideControl(mTabs.Get(t)->mControls.Get()[p], false);
+		    }
+		}
+		else
+		{
+		    for (int p = 0; p < mTabs.Get(t)->mControls.GetSize(); p++)
+		    {
+			mPlug->GetGUI()->HideControl(mTabs.Get(t)->mControls.Get()[p], true);
+		    }
+		}
+
+	    }
+
+	    break;
+	}
+    }
+
+    if (hit != -1)
+    {
+	mActive = hit;
+    }
+
+    SetDirty();
+}
+
+bool IPanelTabs::Draw(IGraphics *pGraphics)
+{
+	pGraphics->FillIRect(&mBGColor, &mRECT);
+    for (int t = 0; t < mTabs.GetSize(); t++)
+    {
+	if (t == mActive) {
+	    pGraphics->FillIRect(&mOnColor, &mTabs.Get(t)->mRECT);
+	}
+	pGraphics->DrawRect(&mFGColor, &mTabs.Get(t)->mRECT);
+	pGraphics->DrawIText(&mText, mTabs.Get(t)->mLabel.Get(), &mTabs.Get(t)->mRECT);
+    }
+
+    return true;
 }

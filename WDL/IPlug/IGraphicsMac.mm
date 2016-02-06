@@ -257,8 +257,6 @@ bool IGraphicsMac::DrawScreen(IRECT* pR)
       }
 #endif
     }
-    if (!mColorSpace)
-      mColorSpace = CGColorSpaceCreateDeviceRGB();
   }
   
 #ifdef IGRAPHICS_MAC_BLIT_BENCHMARK
