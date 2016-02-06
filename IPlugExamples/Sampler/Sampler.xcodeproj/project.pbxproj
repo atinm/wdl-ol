@@ -301,6 +301,84 @@
 		4FF016F8134E14E2001447BA /* ptrlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FF016F5134E14E2001447BA /* ptrlist.h */; };
 		4FF016F9134E14E2001447BA /* wdlstring.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FF016F6134E14E2001447BA /* wdlstring.h */; };
 		4FF0171A134E153A001447BA /* heapbuf.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FF01719134E153A001447BA /* heapbuf.h */; };
+		EC78C2EC1C42B73100C93FA1 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2EB1C42B73100C93FA1 /* background.png */; };
+		EC78C2ED1C42B73100C93FA1 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2EB1C42B73100C93FA1 /* background.png */; };
+		EC78C2EE1C42B73100C93FA1 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2EB1C42B73100C93FA1 /* background.png */; };
+		EC78C2EF1C42B73100C93FA1 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2EB1C42B73100C93FA1 /* background.png */; };
+		EC78C2F01C42B73100C93FA1 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2EB1C42B73100C93FA1 /* background.png */; };
+		EC78C2F11C42B73100C93FA1 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2EB1C42B73100C93FA1 /* background.png */; };
+		EC78C2F51C42B75500C93FA1 /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2F41C42B75500C93FA1 /* knob.png */; };
+		EC78C2F61C42B75500C93FA1 /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2F41C42B75500C93FA1 /* knob.png */; };
+		EC78C2F71C42B75500C93FA1 /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2F41C42B75500C93FA1 /* knob.png */; };
+		EC78C2F81C42B75500C93FA1 /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2F41C42B75500C93FA1 /* knob.png */; };
+		EC78C2F91C42B75500C93FA1 /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2F41C42B75500C93FA1 /* knob.png */; };
+		EC78C2FA1C42B75500C93FA1 /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2F41C42B75500C93FA1 /* knob.png */; };
+		EC78C3061C42B7E500C93FA1 /* even_knob20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FB1C42B7E500C93FA1 /* even_knob20x20.png */; };
+		EC78C3071C42B7E500C93FA1 /* even_knob20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FB1C42B7E500C93FA1 /* even_knob20x20.png */; };
+		EC78C3081C42B7E500C93FA1 /* even_knob20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FB1C42B7E500C93FA1 /* even_knob20x20.png */; };
+		EC78C3091C42B7E500C93FA1 /* even_knob20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FB1C42B7E500C93FA1 /* even_knob20x20.png */; };
+		EC78C30A1C42B7E500C93FA1 /* even_knob20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FB1C42B7E500C93FA1 /* even_knob20x20.png */; };
+		EC78C30B1C42B7E500C93FA1 /* even_knob20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FB1C42B7E500C93FA1 /* even_knob20x20.png */; };
+		EC78C30C1C42B7E500C93FA1 /* even_knob32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FC1C42B7E500C93FA1 /* even_knob32x32.png */; };
+		EC78C30D1C42B7E500C93FA1 /* even_knob32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FC1C42B7E500C93FA1 /* even_knob32x32.png */; };
+		EC78C30E1C42B7E500C93FA1 /* even_knob32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FC1C42B7E500C93FA1 /* even_knob32x32.png */; };
+		EC78C30F1C42B7E500C93FA1 /* even_knob32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FC1C42B7E500C93FA1 /* even_knob32x32.png */; };
+		EC78C3101C42B7E500C93FA1 /* even_knob32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FC1C42B7E500C93FA1 /* even_knob32x32.png */; };
+		EC78C3111C42B7E500C93FA1 /* even_knob32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FC1C42B7E500C93FA1 /* even_knob32x32.png */; };
+		EC78C3121C42B7E500C93FA1 /* even_knob40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FD1C42B7E500C93FA1 /* even_knob40x40.png */; };
+		EC78C3131C42B7E500C93FA1 /* even_knob40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FD1C42B7E500C93FA1 /* even_knob40x40.png */; };
+		EC78C3141C42B7E500C93FA1 /* even_knob40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FD1C42B7E500C93FA1 /* even_knob40x40.png */; };
+		EC78C3151C42B7E500C93FA1 /* even_knob40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FD1C42B7E500C93FA1 /* even_knob40x40.png */; };
+		EC78C3161C42B7E500C93FA1 /* even_knob40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FD1C42B7E500C93FA1 /* even_knob40x40.png */; };
+		EC78C3171C42B7E500C93FA1 /* even_knob40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FD1C42B7E500C93FA1 /* even_knob40x40.png */; };
+		EC78C3181C42B7E500C93FA1 /* even_knob64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FE1C42B7E500C93FA1 /* even_knob64x64.png */; };
+		EC78C3191C42B7E500C93FA1 /* even_knob64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FE1C42B7E500C93FA1 /* even_knob64x64.png */; };
+		EC78C31A1C42B7E500C93FA1 /* even_knob64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FE1C42B7E500C93FA1 /* even_knob64x64.png */; };
+		EC78C31B1C42B7E600C93FA1 /* even_knob64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FE1C42B7E500C93FA1 /* even_knob64x64.png */; };
+		EC78C31C1C42B7E600C93FA1 /* even_knob64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FE1C42B7E500C93FA1 /* even_knob64x64.png */; };
+		EC78C31D1C42B7E600C93FA1 /* even_knob64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FE1C42B7E500C93FA1 /* even_knob64x64.png */; };
+		EC78C31E1C42B7E600C93FA1 /* kb.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FF1C42B7E500C93FA1 /* kb.png */; };
+		EC78C31F1C42B7E600C93FA1 /* kb.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FF1C42B7E500C93FA1 /* kb.png */; };
+		EC78C3201C42B7E600C93FA1 /* kb.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FF1C42B7E500C93FA1 /* kb.png */; };
+		EC78C3211C42B7E600C93FA1 /* kb.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FF1C42B7E500C93FA1 /* kb.png */; };
+		EC78C3221C42B7E600C93FA1 /* kb.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FF1C42B7E500C93FA1 /* kb.png */; };
+		EC78C3231C42B7E600C93FA1 /* kb.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C2FF1C42B7E500C93FA1 /* kb.png */; };
+		EC78C3241C42B7E600C93FA1 /* knob20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3001C42B7E500C93FA1 /* knob20x20.png */; };
+		EC78C3251C42B7E600C93FA1 /* knob20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3001C42B7E500C93FA1 /* knob20x20.png */; };
+		EC78C3261C42B7E600C93FA1 /* knob20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3001C42B7E500C93FA1 /* knob20x20.png */; };
+		EC78C3271C42B7E600C93FA1 /* knob20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3001C42B7E500C93FA1 /* knob20x20.png */; };
+		EC78C3281C42B7E600C93FA1 /* knob20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3001C42B7E500C93FA1 /* knob20x20.png */; };
+		EC78C3291C42B7E600C93FA1 /* knob20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3001C42B7E500C93FA1 /* knob20x20.png */; };
+		EC78C32A1C42B7E600C93FA1 /* knob32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3011C42B7E500C93FA1 /* knob32x32.png */; };
+		EC78C32B1C42B7E600C93FA1 /* knob32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3011C42B7E500C93FA1 /* knob32x32.png */; };
+		EC78C32C1C42B7E600C93FA1 /* knob32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3011C42B7E500C93FA1 /* knob32x32.png */; };
+		EC78C32D1C42B7E600C93FA1 /* knob32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3011C42B7E500C93FA1 /* knob32x32.png */; };
+		EC78C32E1C42B7E600C93FA1 /* knob32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3011C42B7E500C93FA1 /* knob32x32.png */; };
+		EC78C32F1C42B7E600C93FA1 /* knob32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3011C42B7E500C93FA1 /* knob32x32.png */; };
+		EC78C3301C42B7E600C93FA1 /* knob40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3021C42B7E500C93FA1 /* knob40x40.png */; };
+		EC78C3311C42B7E600C93FA1 /* knob40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3021C42B7E500C93FA1 /* knob40x40.png */; };
+		EC78C3321C42B7E600C93FA1 /* knob40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3021C42B7E500C93FA1 /* knob40x40.png */; };
+		EC78C3331C42B7E600C93FA1 /* knob40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3021C42B7E500C93FA1 /* knob40x40.png */; };
+		EC78C3341C42B7E600C93FA1 /* knob40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3021C42B7E500C93FA1 /* knob40x40.png */; };
+		EC78C3351C42B7E600C93FA1 /* knob40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3021C42B7E500C93FA1 /* knob40x40.png */; };
+		EC78C3361C42B7E600C93FA1 /* knob64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3031C42B7E500C93FA1 /* knob64x64.png */; };
+		EC78C3371C42B7E600C93FA1 /* knob64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3031C42B7E500C93FA1 /* knob64x64.png */; };
+		EC78C3381C42B7E600C93FA1 /* knob64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3031C42B7E500C93FA1 /* knob64x64.png */; };
+		EC78C3391C42B7E600C93FA1 /* knob64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3031C42B7E500C93FA1 /* knob64x64.png */; };
+		EC78C33A1C42B7E600C93FA1 /* knob64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3031C42B7E500C93FA1 /* knob64x64.png */; };
+		EC78C33B1C42B7E600C93FA1 /* knob64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3031C42B7E500C93FA1 /* knob64x64.png */; };
+		EC78C33C1C42B7E600C93FA1 /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3041C42B7E500C93FA1 /* slider.png */; };
+		EC78C33D1C42B7E600C93FA1 /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3041C42B7E500C93FA1 /* slider.png */; };
+		EC78C33E1C42B7E600C93FA1 /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3041C42B7E500C93FA1 /* slider.png */; };
+		EC78C33F1C42B7E600C93FA1 /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3041C42B7E500C93FA1 /* slider.png */; };
+		EC78C3401C42B7E600C93FA1 /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3041C42B7E500C93FA1 /* slider.png */; };
+		EC78C3411C42B7E600C93FA1 /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3041C42B7E500C93FA1 /* slider.png */; };
+		EC78C3421C42B7E600C93FA1 /* top_buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3051C42B7E500C93FA1 /* top_buttons.png */; };
+		EC78C3431C42B7E600C93FA1 /* top_buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3051C42B7E500C93FA1 /* top_buttons.png */; };
+		EC78C3441C42B7E600C93FA1 /* top_buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3051C42B7E500C93FA1 /* top_buttons.png */; };
+		EC78C3451C42B7E600C93FA1 /* top_buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3051C42B7E500C93FA1 /* top_buttons.png */; };
+		EC78C3461C42B7E600C93FA1 /* top_buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3051C42B7E500C93FA1 /* top_buttons.png */; };
+		EC78C3471C42B7E600C93FA1 /* top_buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = EC78C3051C42B7E500C93FA1 /* top_buttons.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -564,7 +642,7 @@
 		4F78D8D313B63B5D0032E0F3 /* aeffectx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aeffectx.h; sourceTree = "<group>"; };
 		4F78D8E613B63BA40032E0F3 /* IPlug_include_in_plug_hdr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IPlug_include_in_plug_hdr.h; path = ../../WDL/IPlug/IPlug_include_in_plug_hdr.h; sourceTree = SOURCE_ROOT; };
 		4F78D8E813B63BA40032E0F3 /* IPlug_include_in_plug_src.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IPlug_include_in_plug_src.h; path = ../../WDL/IPlug/IPlug_include_in_plug_src.h; sourceTree = SOURCE_ROOT; };
-		4F78D8E913B63BA40032E0F3 /* IControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IControl.h; path = ../../WDL/IPlug/IControl.h; sourceTree = SOURCE_ROOT; };
+		4F78D8E913B63BA40032E0F3 /* IControl.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = IControl.h; path = ../../WDL/IPlug/IControl.h; sourceTree = SOURCE_ROOT; };
 		4F78D8EA13B63BA40032E0F3 /* IKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IKeyboardControl.h; path = ../../WDL/IPlug/IKeyboardControl.h; sourceTree = SOURCE_ROOT; };
 		4F78D8EB13B63BA40032E0F3 /* IPlugStandalone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IPlugStandalone.cpp; path = ../../WDL/IPlug/IPlugStandalone.cpp; sourceTree = SOURCE_ROOT; };
 		4F78D8EC13B63BA40032E0F3 /* IPlugBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IPlugBase.h; path = ../../WDL/IPlug/IPlugBase.h; sourceTree = SOURCE_ROOT; };
@@ -681,6 +759,20 @@
 		52FBBED20D0CF13D001C8B8A /* Sampler.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = Sampler.h; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		52FBBED30D0CF143001C8B8A /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		EC6610ED1C5E5F1800724D71 /* IAutoGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAutoGUI.h; path = ../../WDL/IPlug/IAutoGUI.h; sourceTree = "<group>"; };
+		EC78C2EB1C42B73100C93FA1 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = resources/img/background.png; sourceTree = "<group>"; };
+		EC78C2F41C42B75500C93FA1 /* knob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = knob.png; path = resources/img/knob.png; sourceTree = "<group>"; };
+		EC78C2FB1C42B7E500C93FA1 /* even_knob20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = even_knob20x20.png; path = resources/img/even_knob20x20.png; sourceTree = "<group>"; };
+		EC78C2FC1C42B7E500C93FA1 /* even_knob32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = even_knob32x32.png; path = resources/img/even_knob32x32.png; sourceTree = "<group>"; };
+		EC78C2FD1C42B7E500C93FA1 /* even_knob40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = even_knob40x40.png; path = resources/img/even_knob40x40.png; sourceTree = "<group>"; };
+		EC78C2FE1C42B7E500C93FA1 /* even_knob64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = even_knob64x64.png; path = resources/img/even_knob64x64.png; sourceTree = "<group>"; };
+		EC78C2FF1C42B7E500C93FA1 /* kb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kb.png; path = resources/img/kb.png; sourceTree = "<group>"; };
+		EC78C3001C42B7E500C93FA1 /* knob20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = knob20x20.png; path = resources/img/knob20x20.png; sourceTree = "<group>"; };
+		EC78C3011C42B7E500C93FA1 /* knob32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = knob32x32.png; path = resources/img/knob32x32.png; sourceTree = "<group>"; };
+		EC78C3021C42B7E500C93FA1 /* knob40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = knob40x40.png; path = resources/img/knob40x40.png; sourceTree = "<group>"; };
+		EC78C3031C42B7E500C93FA1 /* knob64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = knob64x64.png; path = resources/img/knob64x64.png; sourceTree = "<group>"; };
+		EC78C3041C42B7E500C93FA1 /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slider.png; path = resources/img/slider.png; sourceTree = "<group>"; };
+		EC78C3051C42B7E500C93FA1 /* top_buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = top_buttons.png; path = resources/img/top_buttons.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1099,6 +1191,7 @@
 				4F75900813B7A91A00DA399F /* MACGUI */,
 				4F78DAEC13B6427D0032E0F3 /* WINGUI */,
 				4F3EE94513B65A350097B791 /* IPlugOSDetect.h */,
+				EC6610ED1C5E5F1800724D71 /* IAutoGUI.h */,
 				4F78D90813B63BA50032E0F3 /* IGraphics.h */,
 				4F78D8F613B63BA50032E0F3 /* IGraphics.cpp */,
 				4FDA440513F3E4F2000B4551 /* IBitmapMonoText.cpp */,
@@ -1284,6 +1377,19 @@
 		4FD16A0213B6303B001D0217 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				EC78C2FB1C42B7E500C93FA1 /* even_knob20x20.png */,
+				EC78C2FC1C42B7E500C93FA1 /* even_knob32x32.png */,
+				EC78C2FD1C42B7E500C93FA1 /* even_knob40x40.png */,
+				EC78C2FE1C42B7E500C93FA1 /* even_knob64x64.png */,
+				EC78C2FF1C42B7E500C93FA1 /* kb.png */,
+				EC78C3001C42B7E500C93FA1 /* knob20x20.png */,
+				EC78C3011C42B7E500C93FA1 /* knob32x32.png */,
+				EC78C3021C42B7E500C93FA1 /* knob40x40.png */,
+				EC78C3031C42B7E500C93FA1 /* knob64x64.png */,
+				EC78C3041C42B7E500C93FA1 /* slider.png */,
+				EC78C3051C42B7E500C93FA1 /* top_buttons.png */,
+				EC78C2F41C42B75500C93FA1 /* knob.png */,
+				EC78C2EB1C42B73100C93FA1 /* background.png */,
 				4F7E20071679307E00907FCF /* about.png */,
 				4F7E20081679307E00907FCF /* bg.png */,
 				4F7E20091679307E00907FCF /* bk.png */,
@@ -1584,8 +1690,8 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
 				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 0720;
 			};
 			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "Sampler" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1687,10 +1793,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC78C3071C42B7E500C93FA1 /* even_knob20x20.png in Resources */,
+				EC78C30D1C42B7E500C93FA1 /* even_knob32x32.png in Resources */,
+				EC78C3311C42B7E600C93FA1 /* knob40x40.png in Resources */,
+				EC78C3251C42B7E600C93FA1 /* knob20x20.png in Resources */,
+				EC78C3131C42B7E500C93FA1 /* even_knob40x40.png in Resources */,
+				EC78C32B1C42B7E600C93FA1 /* knob32x32.png in Resources */,
+				EC78C3371C42B7E600C93FA1 /* knob64x64.png in Resources */,
 				4F23B9F313B647A00097A67E /* knob.png in Resources */,
+				EC78C2ED1C42B73100C93FA1 /* background.png in Resources */,
+				EC78C2F61C42B75500C93FA1 /* knob.png in Resources */,
 				4F7E20171679307E00907FCF /* about.png in Resources */,
 				4F7E20181679307E00907FCF /* bg.png in Resources */,
+				EC78C33D1C42B7E600C93FA1 /* slider.png in Resources */,
+				EC78C3191C42B7E500C93FA1 /* even_knob64x64.png in Resources */,
 				4F7E20191679307E00907FCF /* bk.png in Resources */,
+				EC78C3431C42B7E600C93FA1 /* top_buttons.png in Resources */,
+				EC78C31F1C42B7E600C93FA1 /* kb.png in Resources */,
 				4F7E201A1679307E00907FCF /* wk.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1699,10 +1818,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC78C3091C42B7E500C93FA1 /* even_knob20x20.png in Resources */,
+				EC78C30F1C42B7E500C93FA1 /* even_knob32x32.png in Resources */,
+				EC78C3331C42B7E600C93FA1 /* knob40x40.png in Resources */,
+				EC78C3271C42B7E600C93FA1 /* knob20x20.png in Resources */,
+				EC78C3151C42B7E500C93FA1 /* even_knob40x40.png in Resources */,
+				EC78C32D1C42B7E600C93FA1 /* knob32x32.png in Resources */,
+				EC78C3391C42B7E600C93FA1 /* knob64x64.png in Resources */,
 				4F23BA0C13B647A00097A67E /* knob.png in Resources */,
+				EC78C2EF1C42B73100C93FA1 /* background.png in Resources */,
+				EC78C2F81C42B75500C93FA1 /* knob.png in Resources */,
 				4F7E200F1679307E00907FCF /* about.png in Resources */,
 				4F7E20101679307E00907FCF /* bg.png in Resources */,
+				EC78C33F1C42B7E600C93FA1 /* slider.png in Resources */,
+				EC78C31B1C42B7E600C93FA1 /* even_knob64x64.png in Resources */,
 				4F7E20111679307E00907FCF /* bk.png in Resources */,
+				EC78C3451C42B7E600C93FA1 /* top_buttons.png in Resources */,
+				EC78C3211C42B7E600C93FA1 /* kb.png in Resources */,
 				4F7E20121679307E00907FCF /* wk.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1711,10 +1843,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC78C30A1C42B7E500C93FA1 /* even_knob20x20.png in Resources */,
+				EC78C3101C42B7E500C93FA1 /* even_knob32x32.png in Resources */,
+				EC78C3341C42B7E600C93FA1 /* knob40x40.png in Resources */,
+				EC78C3281C42B7E600C93FA1 /* knob20x20.png in Resources */,
+				EC78C3161C42B7E500C93FA1 /* even_knob40x40.png in Resources */,
+				EC78C32E1C42B7E600C93FA1 /* knob32x32.png in Resources */,
+				EC78C33A1C42B7E600C93FA1 /* knob64x64.png in Resources */,
 				4F7F5C4613E95EC8002918FD /* knob.png in Resources */,
+				EC78C2F01C42B73100C93FA1 /* background.png in Resources */,
+				EC78C2F91C42B75500C93FA1 /* knob.png in Resources */,
 				4F7E200B1679307E00907FCF /* about.png in Resources */,
 				4F7E200C1679307E00907FCF /* bg.png in Resources */,
+				EC78C3401C42B7E600C93FA1 /* slider.png in Resources */,
+				EC78C31C1C42B7E600C93FA1 /* even_knob64x64.png in Resources */,
 				4F7E200D1679307E00907FCF /* bk.png in Resources */,
+				EC78C3461C42B7E600C93FA1 /* top_buttons.png in Resources */,
+				EC78C3221C42B7E600C93FA1 /* kb.png in Resources */,
 				4F7E200E1679307E00907FCF /* wk.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1723,10 +1868,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC78C3081C42B7E500C93FA1 /* even_knob20x20.png in Resources */,
+				EC78C30E1C42B7E500C93FA1 /* even_knob32x32.png in Resources */,
+				EC78C3321C42B7E600C93FA1 /* knob40x40.png in Resources */,
+				EC78C3261C42B7E600C93FA1 /* knob20x20.png in Resources */,
+				EC78C3141C42B7E500C93FA1 /* even_knob40x40.png in Resources */,
+				EC78C32C1C42B7E600C93FA1 /* knob32x32.png in Resources */,
+				EC78C3381C42B7E600C93FA1 /* knob64x64.png in Resources */,
 				4F9828B1140A9EB700F3FCC1 /* knob.png in Resources */,
+				EC78C2EE1C42B73100C93FA1 /* background.png in Resources */,
+				EC78C2F71C42B75500C93FA1 /* knob.png in Resources */,
 				4F7E20131679307E00907FCF /* about.png in Resources */,
 				4F7E20141679307E00907FCF /* bg.png in Resources */,
+				EC78C33E1C42B7E600C93FA1 /* slider.png in Resources */,
+				EC78C31A1C42B7E500C93FA1 /* even_knob64x64.png in Resources */,
 				4F7E20151679307E00907FCF /* bk.png in Resources */,
+				EC78C3441C42B7E600C93FA1 /* top_buttons.png in Resources */,
+				EC78C3201C42B7E600C93FA1 /* kb.png in Resources */,
 				4F7E20161679307E00907FCF /* wk.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1735,10 +1893,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC78C30B1C42B7E500C93FA1 /* even_knob20x20.png in Resources */,
+				EC78C3111C42B7E500C93FA1 /* even_knob32x32.png in Resources */,
+				EC78C3351C42B7E600C93FA1 /* knob40x40.png in Resources */,
+				EC78C3291C42B7E600C93FA1 /* knob20x20.png in Resources */,
+				EC78C3171C42B7E500C93FA1 /* even_knob40x40.png in Resources */,
+				EC78C32F1C42B7E600C93FA1 /* knob32x32.png in Resources */,
+				EC78C33B1C42B7E600C93FA1 /* knob64x64.png in Resources */,
 				4FB600161567CB0A0020189A /* knob.png in Resources */,
+				EC78C2F11C42B73100C93FA1 /* background.png in Resources */,
+				EC78C2FA1C42B75500C93FA1 /* knob.png in Resources */,
 				4F7E201F1679307E00907FCF /* about.png in Resources */,
 				4F7E20201679307E00907FCF /* bg.png in Resources */,
+				EC78C3411C42B7E600C93FA1 /* slider.png in Resources */,
+				EC78C31D1C42B7E600C93FA1 /* even_knob64x64.png in Resources */,
 				4F7E20211679307E00907FCF /* bk.png in Resources */,
+				EC78C3471C42B7E600C93FA1 /* top_buttons.png in Resources */,
+				EC78C3231C42B7E600C93FA1 /* kb.png in Resources */,
 				4F7E20221679307E00907FCF /* wk.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1747,13 +1918,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC78C3421C42B7E600C93FA1 /* top_buttons.png in Resources */,
+				EC78C33C1C42B7E600C93FA1 /* slider.png in Resources */,
+				EC78C3061C42B7E500C93FA1 /* even_knob20x20.png in Resources */,
 				4F78D88613B6382B0032E0F3 /* Sampler.icns in Resources */,
+				EC78C3181C42B7E500C93FA1 /* even_knob64x64.png in Resources */,
+				EC78C2F51C42B75500C93FA1 /* knob.png in Resources */,
 				4F78D89913B639100032E0F3 /* InfoPlist.strings in Resources */,
 				4F78D89A13B639100032E0F3 /* MainMenu.xib in Resources */,
+				EC78C3241C42B7E600C93FA1 /* knob20x20.png in Resources */,
+				EC78C3361C42B7E600C93FA1 /* knob64x64.png in Resources */,
+				EC78C32A1C42B7E600C93FA1 /* knob32x32.png in Resources */,
+				EC78C3301C42B7E600C93FA1 /* knob40x40.png in Resources */,
 				4F23B9FD13B647A00097A67E /* knob.png in Resources */,
 				4F7E201B1679307E00907FCF /* about.png in Resources */,
+				EC78C3121C42B7E500C93FA1 /* even_knob40x40.png in Resources */,
 				4F7E201C1679307E00907FCF /* bg.png in Resources */,
+				EC78C31E1C42B7E600C93FA1 /* kb.png in Resources */,
 				4F7E201D1679307E00907FCF /* bk.png in Resources */,
+				EC78C2EC1C42B73100C93FA1 /* background.png in Resources */,
+				EC78C30C1C42B7E500C93FA1 /* even_knob32x32.png in Resources */,
 				4F7E201E1679307E00907FCF /* wk.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2079,21 +2263,34 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4FCF15AF133124D1009A6277 /* Sampler.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = "$(DEBUG_OPTIMIZE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = $IPLUG_PATH/IPlug_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(DEBUG_DEFS)";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "$(COCOA_DEFS)";
 				GCC_VERSION = "$(COMPILER)";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -2115,10 +2312,10 @@
 				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = "$(BINARY_NAME)";
-				SYMROOT = "build-mac";
 				SDKROOT = "$(BASE_SDK)";
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "build-mac";
 				VALID_ARCHS = "i386 x86_64";
 				WRAPPER_EXTENSION = "";
 			};
@@ -2128,12 +2325,20 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4FCF15AF133124D1009A6277 /* Sampler.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = "$(RELEASE_OPTIMIZE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = $IPLUG_PATH/IPlug_Prefix.pch;
@@ -2141,8 +2346,12 @@
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "$(COCOA_DEFS)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = "$(COMPILER)";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_PKGINFO_FILE = YES;
 				GENERATE_PROFILING_CODE = "$(PROFILE)";
@@ -2164,9 +2373,9 @@
 				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = "$(BINARY_NAME)";
-				SYMROOT = "build-mac";
 				SDKROOT = "$(BASE_SDK)";
 				SKIP_INSTALL = NO;
+				SYMROOT = "build-mac";
 				VALID_ARCHS = "i386 x86_64";
 				WRAPPER_EXTENSION = "";
 			};
@@ -2175,12 +2384,14 @@
 		4F20EF30132C69FE0030E34C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "$(VST_FOLDER)";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
 					"$(VST_DEFS)",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "resources/Sampler-VST2-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.vst.${BINARY_NAME}";
 				SKIP_INSTALL = NO;
 				WARNING_CFLAGS = "-Wno-main";
 				WRAPPER_EXTENSION = vst;
@@ -2190,12 +2401,14 @@
 		4F20EF31132C69FE0030E34C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "$(VST_FOLDER)";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
 					"$(VST_DEFS)",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "resources/Sampler-VST2-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.vst.${BINARY_NAME}";
 				SKIP_INSTALL = NO;
 				WARNING_CFLAGS = "-Wno-main";
 				WRAPPER_EXTENSION = vst;
@@ -2205,12 +2418,14 @@
 		4F20EF32132C69FE0030E34C /* Tracer */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "$(VST_FOLDER)";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
 					"$(VST_DEFS)",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "resources/Sampler-VST2-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.vst.${BINARY_NAME}";
 				SKIP_INSTALL = NO;
 				WARNING_CFLAGS = "-Wno-main";
 				WRAPPER_EXTENSION = vst;
@@ -2220,6 +2435,7 @@
 		4F3AE1DD12C0E5E2001FD7A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "$(AU_FOLDER)";
 				EXPORTED_SYMBOLS_FILE = Sampler.exp;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
@@ -2230,6 +2446,7 @@
 				OTHER_LDFLAGS = "-bundle";
 				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I $CA_SDK/AudioUnits/AUPublic/AUBase";
 				PREBINDING = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.audiounit.${BINARY_NAME}";
 				REZ_SEARCH_PATHS = (
 					/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers,
 					$CA_SDK/AudioUnits/AUPublic/AUBase,
@@ -2242,6 +2459,7 @@
 		4F3AE1DE12C0E5E2001FD7A4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "$(AU_FOLDER)";
 				EXPORTED_SYMBOLS_FILE = Sampler.exp;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
@@ -2252,6 +2470,7 @@
 				OTHER_LDFLAGS = "-bundle";
 				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I $CA_SDK/AudioUnits/AUPublic/AUBase";
 				PREBINDING = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.audiounit.${BINARY_NAME}";
 				REZ_SEARCH_PATHS = (
 					/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers,
 					$CA_SDK/AudioUnits/AUPublic/AUBase,
@@ -2264,6 +2483,7 @@
 		4F3AE1DF12C0E5E2001FD7A4 /* Tracer */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "$(AU_FOLDER)";
 				EXPORTED_SYMBOLS_FILE = Sampler.exp;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
@@ -2274,6 +2494,7 @@
 				OTHER_LDFLAGS = "-bundle";
 				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I $CA_SDK/AudioUnits/AUPublic/AUBase";
 				PREBINDING = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.audiounit.${BINARY_NAME}";
 				REZ_SEARCH_PATHS = (
 					/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers,
 					$CA_SDK/AudioUnits/AUPublic/AUBase,
@@ -2315,7 +2536,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4F7F5CAB13E9607A002918FD /* CommonDebugSettings.xcconfig */;
 			buildSettings = {
-				ARCHS = i386;
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				DSTROOT = "$(RTAS_FOLDER)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2353,6 +2574,7 @@
 					"$(inherited)",
 					"\"-LlibPluginLibrary\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.rtas.${BINARY_NAME}";
 				SDKROOT = "$(BASE_SDK)";
 				SKIP_INSTALL = NO;
 				SYMROOT = "build-mac";
@@ -2369,7 +2591,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4F7F5CAC13E9607A002918FD /* CommonReleaseSettings.xcconfig */;
 			buildSettings = {
-				ARCHS = i386;
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				DEPLOYMENT_POSTPROCESSING = NO;
 				DSTROOT = "$(RTAS_FOLDER)";
@@ -2401,6 +2623,7 @@
 				OBJROOT = "build-mac";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.rtas.${BINARY_NAME}";
 				SDKROOT = "$(BASE_SDK)";
 				SKIP_INSTALL = NO;
 				SYMROOT = "build-mac";
@@ -2417,7 +2640,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4F7F5CAC13E9607A002918FD /* CommonReleaseSettings.xcconfig */;
 			buildSettings = {
-				ARCHS = i386;
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				DSTROOT = "$(RTAS_FOLDER)";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
@@ -2450,6 +2673,7 @@
 					"$(inherited)",
 					"\"-LlibPluginLibrary\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.rtas.${BINARY_NAME}";
 				SDKROOT = "$(BASE_SDK)";
 				SYMROOT = "build-mac";
 				VALID_ARCHS = i386;
@@ -2464,6 +2688,7 @@
 		4F9828DD140A9EB700F3FCC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "$(VST3_FOLDER)";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
 					"$(VST3_DEFS)",
@@ -2474,6 +2699,7 @@
 					"$(VST3_SDK)",
 				);
 				INFOPLIST_FILE = "resources/Sampler-VST3-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.vst3.${BINARY_NAME}";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = vst3;
 			};
@@ -2482,6 +2708,7 @@
 		4F9828DE140A9EB700F3FCC1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "$(VST3_FOLDER)";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
 					"$(VST3_DEFS)",
@@ -2492,6 +2719,7 @@
 					"$(VST3_SDK)",
 				);
 				INFOPLIST_FILE = "resources/Sampler-VST3-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.vst3.${BINARY_NAME}";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = vst3;
 			};
@@ -2500,6 +2728,7 @@
 		4F9828DF140A9EB700F3FCC1 /* Tracer */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "$(VST3_FOLDER)";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
 					"$(VST3_DEFS)",
@@ -2510,6 +2739,7 @@
 					"$(VST3_SDK)",
 				);
 				INFOPLIST_FILE = "resources/Sampler-VST3-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.vst3.${BINARY_NAME}";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = vst3;
 			};
@@ -2520,7 +2750,7 @@
 			baseConfigurationReference = 4F4CC38C1549B92900A9EA21 /* CommonDebugSettings.xcconfig */;
 			buildSettings = {
 				AAX_SDK_ROOT = "$(AAX_SDK)";
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(AAX_FOLDER)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2550,6 +2780,7 @@
 					"$(AAX_SDK)/Libs/Debug",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(DEPLOYMENT_TARGET)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.aax.${BINARY_NAME}";
 				SDKROOT = "$(BASE_SDK)";
 				SKIP_INSTALL = NO;
 				WARNING_CFLAGS = (
@@ -2566,7 +2797,7 @@
 			baseConfigurationReference = 4F4CC38D1549B92900A9EA21 /* CommonReleaseSettings.xcconfig */;
 			buildSettings = {
 				AAX_SDK_ROOT = "$(AAX_SDK)";
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -2597,8 +2828,9 @@
 					"$(ADDITIONAL_LIBRARY_PATHS)",
 					"$(AAX_SDK)/Libs/Release",
 				);
-				PREBINDING = YES;
 				MACOSX_DEPLOYMENT_TARGET = "$(DEPLOYMENT_TARGET)";
+				PREBINDING = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.aax.${BINARY_NAME}";
 				SDKROOT = "$(BASE_SDK)";
 				SKIP_INSTALL = NO;
 				WARNING_CFLAGS = (
@@ -2615,7 +2847,7 @@
 			baseConfigurationReference = 4F4CC38D1549B92900A9EA21 /* CommonReleaseSettings.xcconfig */;
 			buildSettings = {
 				AAX_SDK_ROOT = "$(AAX_SDK)";
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -2647,6 +2879,7 @@
 					"$(AAX_SDK)/Libs/Release",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(DEPLOYMENT_TARGET)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.aax.${BINARY_NAME}";
 				SDKROOT = "$(BASE_SDK)";
 				SKIP_INSTALL = NO;
 				WARNING_CFLAGS = (
@@ -2661,6 +2894,7 @@
 		4FD16A0C13B63082001D0217 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "$(APP_FOLDER)";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
 					"$(APP_DEFS)",
@@ -2678,6 +2912,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.standalone.${BINARY_NAME}";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2686,6 +2921,7 @@
 		4FD16A0D13B63082001D0217 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "$(APP_FOLDER)";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
 					"$(APP_DEFS)",
@@ -2703,6 +2939,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.standalone.${BINARY_NAME}";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2711,6 +2948,7 @@
 		4FD16A0E13B63082001D0217 /* Tracer */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "$(APP_FOLDER)";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
 					"$(APP_DEFS)",
@@ -2728,6 +2966,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Atiin.standalone.${BINARY_NAME}";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2737,19 +2976,31 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4FCF15AF133124D1009A6277 /* Sampler.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				DEPLOYMENT_LOCATION = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = "$(RELEASE_OPTIMIZE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = $IPLUG_PATH/IPlug_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(TRACER_DEFS)";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "$(COCOA_DEFS)";
 				GCC_VERSION = "$(COMPILER)";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -2770,9 +3021,9 @@
 				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = "$(BINARY_NAME)";
-				SYMROOT = "build-mac";
 				SDKROOT = "$(BASE_SDK)";
 				SKIP_INSTALL = NO;
+				SYMROOT = "build-mac";
 				VALID_ARCHS = "i386 x86_64";
 				WRAPPER_EXTENSION = "";
 			};

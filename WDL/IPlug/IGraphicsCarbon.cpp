@@ -343,6 +343,7 @@ pascal OSStatus IGraphicsCarbon::MainEventHandler(EventHandlerCallRef pHandlerCa
           GetEventParameter(pEvent, kEventParamKeyMacCharCodes, typeChar, NULL, sizeof(char), NULL, &c);
 
           if (k == 49) key = KEY_SPACE;
+          else if (k == 0x24) key = KEY_RETURN;
           else if (k == 125) key = KEY_DOWNARROW;
           else if (k == 126) key = KEY_UPARROW;
           else if (k == 123) key = KEY_LEFTARROW;

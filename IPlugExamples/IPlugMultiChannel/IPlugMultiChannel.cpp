@@ -22,7 +22,7 @@ IPlugMultiChannel::IPlugMultiChannel(IPlugInstanceInfo instanceInfo)
   GetParam(kGain)->SetShape(2.);
   
   IGraphics* pGraphics = MakeGraphics(this, GUI_WIDTH, GUI_HEIGHT);
-  IText textProps(12, &COLOR_BLACK, "Verdana", IText::kStyleNormal, IText::kAlignNear, 0, IText::kQualityNonAntiAliased);
+  IText textProps(12, &COLOR_BLACK, &COLOR_WHITE, TRANSPARENT, "Verdana", IText::kStyleNormal, IText::kAlignNear, 0, IText::kQualityNonAntiAliased);
 	GenerateKnobGUI(pGraphics, this, &textProps, &COLOR_WHITE, &COLOR_BLACK, 60, 70);
   AttachGraphics(pGraphics);
   

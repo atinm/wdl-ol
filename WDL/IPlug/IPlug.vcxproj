@@ -108,6 +108,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>build-win\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>E:\atin\srcs\atins_sample_finder\wdl-ol\WDL;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>build-win\$(Platform)\$(Configuration)\</IntDir>
@@ -256,6 +257,7 @@
   <ItemGroup>
     <ClInclude Include="Containers.h" />
     <ClInclude Include="Hosts.h" />
+    <ClInclude Include="IAutoGUI.h" />
     <ClInclude Include="IBitmapMonoText.h" />
     <ClInclude Include="IControl.h" />
     <ClInclude Include="IGraphics.h" />

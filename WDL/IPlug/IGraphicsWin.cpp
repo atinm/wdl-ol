@@ -293,7 +293,8 @@ LRESULT CALLBACK IGraphicsWin::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARA
       int key;
 
       if (wParam == VK_SPACE) key = KEY_SPACE;
-      else if (wParam == VK_UP) key = KEY_UPARROW;
+	  else if (wParam == VK_RETURN) key = KEY_RETURN;
+	  else if (wParam == VK_UP) key = KEY_UPARROW;
       else if (wParam == VK_DOWN) key = KEY_DOWNARROW;
       else if (wParam == VK_LEFT) key = KEY_LEFTARROW;
       else if (wParam == VK_RIGHT) key = KEY_RIGHTARROW;

@@ -1,8 +1,10 @@
 #ifndef _ICONTROL_
 #define _ICONTROL_
 
+#include <vector>
 #include "IPlugBase.h"
 #include "IGraphics.h"
+#include "wdlstring.h"
 
 // A control is anything on the GUI, it could be a static bitmap, or
 // something that moves or changes.  The control could manipulate
@@ -61,6 +63,7 @@ public:
   int GetTextEntryLength() { return mTextEntryLength; }
   void SetTextEntryLength(int len) { mTextEntryLength = len;  }
   void SetText(IText* txt) { mText = *txt; }
+  void SetRECT(IRECT pR) { mRECT = pR; mTargetRECT = pR; }
   IRECT* GetRECT() { return &mRECT; }       // The draw area for this control.
   IRECT* GetTargetRECT() { return &mTargetRECT; } // The mouse target area (default = draw area).
   void SetTargetArea(IRECT pR) { mTargetRECT = pR; }
@@ -96,7 +99,12 @@ public:
   // IPlugBase::OnIdle which is called from the audio processing thread.
   // Only active if USE_IDLE_CALLS is defined.
   virtual void OnGUIIdle() {}
-  
+
+  // This is required to Attach any nested controls this control may
+  // have to the IGraphics context.
+  virtual void AttachNestedControls(IGraphics *pGraphics) {}
+  virtual std::vector<IControl *> *GetNestedControls() { return NULL; }
+    
   // a struct that contain a parameter index and normalized value
   struct AuxParam 
   {
@@ -491,17 +499,19 @@ class IScrollbarListener
 public:
 	IScrollbarListener() {};
 	~IScrollbarListener() {};
-
+	// Callback function that is called when the Scrollbar position changes. Inherit from
+	// IScrollbarListener in your IControl class and implement to get notified about changes
+	// to the scrollbar position.
 	virtual void NotifyParentScrollPosChange(IScrollbar *scrollbar, int pos) = 0;
 };
 
 class IScrollbar : public IControl
 {
 public:
-	IScrollbar(IPlugBase *pPlug, IRECT *pR, IScrollInfo *si, IColor fg, IColor bg, IScrollbarListener* listner, bool isVertical);
+	IScrollbar(IPlugBase *pPlug, IRECT *pR, IScrollInfo *si, const IColor *pFG, IScrollbarListener* listener, bool isVertical);
 	~IScrollbar();
 
-	bool isVertical() const noexcept { return vertical; };
+	bool isVertical() { return vertical; }
 
 	virtual void OnMouseDown(int x, int y, IMouseMod* pMod);
 	virtual void OnMouseDrag(int x, int y, int dX, int dY, IMouseMod* pMod);
@@ -510,27 +520,164 @@ public:
 
 	IRECT* GetRECT() { return &mRECT; }       // The draw area for this control.
 	IRECT* GetTargetRECT() { return &mTargetRECT; } // The mouse target area (default = draw area).
-	bool SetTargetArea(IRECT pR) { mTargetRECT = pR; }
+	void SetTargetArea(IRECT pR) { mTargetRECT = pR; }
 	bool SetScrollInfo(IScrollInfo *si);
 	bool GetScrollInfo(IScrollInfo *si);
 
-	bool Draw(IGraphics* pGraphics);
+	bool Draw(IGraphics *pGraphics);
 
 	IPlugBase* GetPlug() { return mPlug; }
 	IGraphics* GetGUI() { return mPlug->GetGUI(); }
 
 private:
+	IScrollInfo si;
+	const IColor fg;
 	IScrollbarListener *mListener;
 	bool vertical;
-	IScrollInfo si;
-	IColor fg, bg;
 	IRECT mTargetRECT;
 	IRECT mLeftThumb, mRightThumb, mTopThumb, mBottomThumb;
-	IPlugBase* mPlug;
+	int fps;
+	int timer;
 
 	double GetCurrentPosPercent();
 	void GetThumbSliderRect(IRECT &theThumbSliderRect);
-	void SetScrollPos(int pos, bool dirty);
+	void SetScrollPos(int pos);
 	int GetThumbSliderLength();
 };
-#endif
+
+class IListItem {
+public:
+	IListItem()
+		: mSelected(false) {};
+	virtual ~IListItem() {};
+	void SetSelected(bool select)
+	{
+		mSelected = select;
+	}
+	bool GetSelected() const
+	{
+		return mSelected;
+	}
+
+	virtual bool Draw(IGraphics* pGraphics) = 0;
+	virtual void SetItemRECT(IRECT pR) = 0;
+	virtual bool IsItemHit(int x, int y) = 0;
+private:
+	bool mSelected;
+};
+
+class IListBoxControl : public IControl, public IScrollbarListener {
+public:
+	IListBoxControl(IPlugBase* pPlug, IRECT pR, int paramIdx = -1, IControl *header = NULL, int itemWidth = 100, int itemHeight = DEFAULT_TEXT_SIZE, int scrollbarWidth = DEFAULT_SCROLLBAR_WIDTH, bool multicolumn = false, bool multiselect = false,
+		const IColor *pBG = &COLOR_BLACK, const IColor *pFG = &COLOR_WHITE);
+    virtual ~IListBoxControl() {};
+	virtual void NotifyParentScrollPosChange(IScrollbar *sb, int pos) override;
+    virtual bool Draw(IGraphics *pGraphics) override;
+	IScrollbar *GetVScrollbar() { return mVScrollbar; }
+	IScrollbar *GetHScrollbar() { return mHScrollbar; }
+	virtual void AttachNestedControls(IGraphics *pGraphics) override;
+    virtual std::vector<IControl *> *GetNestedControls() override
+    {
+        std::vector<IControl *> *nested = new std::vector<IControl *>;
+		if (mVScrollbar)
+			nested->push_back(mVScrollbar);
+		if (mHScrollbar)
+			nested->push_back(mHScrollbar);
+		if (mHeader)
+			nested->push_back(mHeader);
+        
+        return nested;
+    }
+	void AddItem(IListItem *item);
+	void ClearItems();
+	void SetItemHeight(int height);
+	void SetItemWidth(int width);
+
+	virtual void OnMouseDown(int x, int y, IMouseMod* pMod) override;
+	virtual void OnMouseDrag(int x, int y, int dX, int dY, IMouseMod* pMod) override;
+	virtual void OnMouseWheel(int x, int y, IMouseMod* pMod, int d) override;
+	virtual bool OnKeyDown(int x, int y, int key) override;
+private:
+	IRECT mArea;
+	bool mMultiColumn;
+	bool mMultiSelection;
+	IControl *mHeader;
+    IScrollbar *mVScrollbar, *mHScrollbar;
+	IScrollInfo mVScrollInfo, mHScrollInfo;
+    int mVMin, mVMax, mVPos, mVPage;
+	int mHMin, mHMax, mHPos, mHPage;
+	int mItemHeight, mItemWidth;
+	int mWidth, mHeight;
+	int mScrollbarWidth;
+	const IColor mBackgroundColor;
+	const IColor mForegroundColor;
+	typedef std::vector<IListItem *> Items;
+	Items mItems;
+	typedef std::vector<bool> Selected;
+	Selected mSelected;
+};
+
+struct ITab
+{
+    IRECT mRECT;
+    WDL_TypedBuf<IControl *> mControls;
+    WDL_String mLabel;
+    
+    ITab(IRECT rect, const char* pLabel)
+    {
+        mRECT = rect;
+        mLabel.Set(pLabel);
+    }
+    
+    void Add(IControl *pC)
+    {
+        mControls.Add(pC);
+        std::vector<IControl *> *nested = pC->GetNestedControls();
+        if (nested) {
+            for (int i=0; i < nested->size(); i++) {
+                mControls.Add((*nested)[i]);
+            }
+        }
+    }
+    
+};
+
+class IPanelTabs : public IControl
+{
+private:
+    WDL_PtrList<ITab> mTabs;
+    IColor mBGColor, mFGColor, mOnColor;
+    int mActive;
+    
+public:
+    
+    IPanelTabs(IPlugBase *pPlug, IRECT tabsRect, IText *pText, const IColor *pBGColor, const IColor *pFGColor, const IColor *pOnColor)
+    : IControl(pPlug, tabsRect, -1)
+    , mBGColor(*pBGColor)
+    , mFGColor(*pFGColor)
+    , mOnColor(*pOnColor)
+    , mActive(0)
+    {
+        mDblAsSingleClick = true;
+        mText = *pText;
+        mText.mAlign = IText::kAlignCenter;
+    }
+    
+    ~IPanelTabs()
+    {
+        mTabs.Empty(true);
+    }
+    
+    void AddTab(ITab* tab)
+    {
+        mTabs.Add(tab);
+    }
+    
+    void OnMouseWheel(int x, int y, IMouseMod* pMod) {}
+    
+    void OnMouseDown(int x, int y, IMouseMod* pMod) override;
+    
+    bool Draw(IGraphics *pGraphics) override;
+};
+
+#endif 

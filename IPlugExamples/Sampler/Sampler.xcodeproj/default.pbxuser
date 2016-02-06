@@ -660,7 +660,7 @@
 			YES,
 		);
 		argumentStrings = (
-			"-v aufx Ipef Atiins",
+			"-v aufx Ipef Atin",
 		);
 		autoAttachOnCrash = 1;
 		breakpointsEnabled = 1;

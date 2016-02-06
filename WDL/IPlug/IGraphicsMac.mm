@@ -246,16 +246,10 @@ bool IGraphicsMac::DrawScreen(IRECT* pR)
     if (v >= 0x1070)
     {
       // use monitor colorspace for faster drawing on 10.7+
-      CMProfileRef systemMonitorProfile = NULL;
-      CMError getProfileErr = CMGetSystemProfile(&systemMonitorProfile);
-      if(noErr == getProfileErr)
-      {
-        mColorSpace = CGColorSpaceCreateWithPlatformColorSpace(systemMonitorProfile);
-        CMCloseProfile(systemMonitorProfile);
-      }
+      mColorSpace = ::CGDisplayCopyColorSpace(::CGMainDisplayID());
+      if (!mColorSpace)
+        mColorSpace = CGColorSpaceCreateDeviceRGB();
     }
-    if (!mColorSpace)
-      mColorSpace = CGColorSpaceCreateDeviceRGB();
   }
   
 #ifdef IGRAPHICS_MAC_BLIT_BENCHMARK

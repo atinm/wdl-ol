@@ -460,6 +460,7 @@ struct IPreset
 
 enum
 {
+  KEY_RETURN,
   KEY_SPACE,
   KEY_UPARROW,
   KEY_DOWNARROW,
@@ -475,6 +476,7 @@ enum
   KEY_ALPHA_Z=KEY_ALPHA_A+25
 };
 
+const int DEFAULT_SCROLLBAR_WIDTH = DEFAULT_TEXT_SIZE;
 struct IScrollInfo
 {
 	UINT cbSize;

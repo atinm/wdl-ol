@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='US-ASCII' standalone='yes'?>
 <PageTables vers='6.4.0.91'>
 	<PageTableLayouts>
-		<Plugin manID='Atiins' prodID='Ipef' plugID='Ipef'>
+		<Plugin manID='Atin' prodID='Ipef' plugID='Ipef'>
 			<Desc>Sampler by Atiin.</Desc>
 			<Layout>PageTable 1</Layout>
-		</Plugin><!--manID='Atiins' prodID='Ipef' plugID='Ipef'-->
+		</Plugin><!--manID='Atin' prodID='Ipef' plugID='Ipef'-->
 		<PTLayout name='PageTable 1'>
 			<PageTable type='BkCS' pgsz='12'>
 				<Page num='1'>
@@ -131,9 +131,9 @@
 			<TDM>
 			</TDM>
 			<RTAS>
-				<PluginID manID='Atiins' prodID='Ipef' plugID='Ipef'>
+				<PluginID manID='Atin' prodID='Ipef' plugID='Ipef'>
 					<MenuStr>RTAS: Sampler</MenuStr>
-				</PluginID><!--manID='Atiins' prodID='Ipef' plugID='Ipef'-->
+				</PluginID><!--manID='Atin' prodID='Ipef' plugID='Ipef'-->
 			</RTAS>
 		</PluginList>
 		<DiscCtrls>

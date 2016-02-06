@@ -28,7 +28,7 @@
   #define _PIDS_
   const int PLUG_TYPE_IDS[2] = {'PSN1', 'PSN2'};
 #endif
-#define PLUG_MFR_PT "Atiin\nAtiin\nAtiins\n"
+#define PLUG_MFR_PT "Atiin\nAtiin\nAtin\n"
 #define PLUG_NAME_PT "Sampler\nAtiin's"
 #define PLUG_TYPE_PT "Effect" // valid options "None" "EQ" "Dynamics" "PitchShift" "Reverb" "Delay" "Modulation" "Harmonic" "NoiseReduction" "Dither" "SoundField" "Effect" instrument determined by PLUG _IS _INST
 #define PLUG_DOES_AUDIOSUITE 0

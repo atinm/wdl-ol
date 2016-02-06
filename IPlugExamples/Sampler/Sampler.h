@@ -78,7 +78,7 @@ enum ELayout
   kKnobFrames = 60,
   kTopButtonsControls = 2,
   kTopButtonsControl_N = 3,
-  kTopButtonsControl_X = 660,
+  kTopButtonsControl_X = 645,
   kTopButtonsControl_Y = 8,
   kTopButtonsControl_W = 98,
   kTopButtonsControl_H = 24
