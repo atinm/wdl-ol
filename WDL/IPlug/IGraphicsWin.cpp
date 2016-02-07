@@ -3,6 +3,7 @@
 #include "Log.h"
 #include <wininet.h>
 #include <Shlobj.h>
+#include <objbase.h>
 #include <commctrl.h>
 
 #ifdef RTAS_API
@@ -18,6 +19,7 @@ static const char* wndClassName = "IPlugWndClass";
 static double sFPS = 0.0;
 
 #define PARAM_EDIT_ID 99
+#define _POSIX_            // PATH_MAX
 
 enum EParamEditMsg
 {
@@ -1175,6 +1177,99 @@ void IGraphicsWin::PromptForFile(WDL_String* pFilename, EFileAction action, WDL_
   {
     pFilename->Set("");
   }
+}
+
+static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam, LPARAM lpData)
+{
+	// If the BFFM_INITIALIZED message is received
+	// set the path to the start path.
+	switch (uMsg)
+	{
+	case BFFM_INITIALIZED:
+	{
+		if (NULL != lpData)
+		{
+			SendMessage(hwnd, BFFM_SETSELECTION, TRUE, lpData);
+		}
+	}
+	}
+
+	return 0; // The function should always return 0.
+}
+
+// HWND is the parent window.
+// szCurrent is an optional start folder. Can be NULL.
+// szPath receives the selected path on success. Must be MAX_PATH characters in length.
+static BOOL BrowseForFolder(HWND hwnd, LPCTSTR szCurrent, LPTSTR szPath)
+{
+	BROWSEINFO   bi = { 0 };
+	LPITEMIDLIST pidl;
+	TCHAR        szDisplay[MAX_PATH];
+	BOOL         retval;
+
+	CoInitialize(NULL);
+
+	bi.hwndOwner = hwnd;
+	bi.pszDisplayName = szDisplay;
+	bi.lpszTitle = TEXT("Please choose a folder.");
+	bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_NEWDIALOGSTYLE | BIF_STATUSTEXT;
+	bi.lpfn = BrowseCallbackProc;
+	bi.lParam = (LPARAM)szCurrent;
+
+	pidl = SHBrowseForFolder(&bi);
+
+	if (NULL != pidl)
+	{
+		retval = SHGetPathFromIDList(pidl, szPath);
+		CoTaskMemFree(pidl);
+	}
+	else
+	{
+		retval = FALSE;
+	}
+
+	if (!retval)
+	{
+		szPath[0] = TEXT('\0');
+	}
+
+	CoUninitialize();
+	return retval;
+}
+
+void IGraphicsWin::PromptForDirectory(WDL_String* pDirname, WDL_String* pStartDir)
+{
+	if (!WindowIsOpen())
+	{
+		pDirname->Set("");
+		return;
+	}
+
+	char fnCStr[MAX_PATH_LEN];
+	char dirCStr[MAX_PATH_LEN];
+
+	if (pDirname->GetLength())
+		strcpy(fnCStr, pDirname->Get());
+	else
+		fnCStr[0] = '\0';
+
+	dirCStr[0] = '\0';
+
+	if (!pStartDir->GetLength())
+	{
+		DesktopPath(pStartDir);
+	}
+
+	strcpy(dirCStr, pStartDir->Get());
+
+	if (BrowseForFolder(mPlugWnd, dirCStr, fnCStr))
+	{
+		pDirname->Set(fnCStr);
+	}
+	else
+	{
+		pDirname->Set("");
+	}
 }
 
 UINT_PTR CALLBACK CCHookProc(HWND hdlg, UINT uiMsg, WPARAM wParam, LPARAM lParam)

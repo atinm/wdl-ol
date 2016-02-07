@@ -39,6 +39,7 @@ public:
   void SandboxSafeAppSupportPath(WDL_String* pPath) { AppSupportPath(pPath, false); }
 
   void PromptForFile(WDL_String* pFilename, EFileAction action = kFileOpen, WDL_String* pDir = 0, char* extensions = "");   // extensions = "txt wav" for example.
+  void PromptForDirectory(WDL_String * pDirname, WDL_String * pDir);
   bool PromptForColor(IColor* pColor, char* prompt = "");
 
   IPopupMenu* GetItemMenu(long idx, long &idxInMenu, long &offsetIdx, IPopupMenu* pMenu);

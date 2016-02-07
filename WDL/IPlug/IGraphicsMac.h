@@ -101,6 +101,7 @@ public:
   void SandboxSafeAppSupportPath(WDL_String* pPath);
 
   void PromptForFile(WDL_String* pFilename, EFileAction action = kFileOpen, WDL_String* pDir = 0, char* extensions = "");   // extensions = "txt wav" for example.
+  void PromptForDirectory(WDL_String* pDirname, WDL_String* pStartDir);
   bool PromptForColor(IColor* pColor, char* prompt = "");
 
   IPopupMenu* CreateIPopupMenu(IPopupMenu* pMenu, IRECT* pTextRect);

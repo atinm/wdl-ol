@@ -769,6 +769,58 @@ bool IFileSelectorControl::IsDirty()
   return false;
 }
 
+void IDirectorySelectorControl::OnMouseDown(int x, int y, IMouseMod* pMod)
+{
+	if (mPlug && mPlug->GetGUI())
+	{
+		mState = kDSSelecting;
+		SetDirty(false);
+
+		mPlug->GetGUI()->PromptForDirectory(&mStartDir, &mDir);
+		mValue += 1.0;
+		if (mValue > 1.0)
+		{
+			mValue = 0.0;
+		}
+		mState = kDSDone;
+		SetDirty();
+	}
+}
+
+bool IDirectorySelectorControl::Draw(IGraphics* pGraphics)
+{
+	if (mState == kDSSelecting)
+	{
+		pGraphics->DrawBitmap(&mBitmap, &mRECT, 0, 0);
+	}
+	return true;
+}
+
+void IDirectorySelectorControl::GetLastSelectedDirectoryForPlug(WDL_String* pStr)
+{
+	pStr->Set(mDir.Get());
+}
+
+void IDirectorySelectorControl::SetLastSelectedDirectoryFromPlug(char* file)
+{
+	mDir.Set(file);
+}
+
+bool IDirectorySelectorControl::IsDirty()
+{
+	if (mDirty)
+	{
+		return true;
+	}
+
+	if (mState == kDSDone)
+	{
+		mState = kDSNone;
+		return true;
+	}
+	return false;
+}
+
 IScrollbar::IScrollbar(IPlugBase *pPlug, IRECT *pR, IScrollInfo *si, const IColor *pFG, IScrollbarListener* listener, bool isVertical)
 	: IControl(pPlug, *pR), fg(*pFG), mListener(listener), vertical(isVertical), fps(0)
 {

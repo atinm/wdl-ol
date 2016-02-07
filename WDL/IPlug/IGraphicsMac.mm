@@ -777,6 +777,55 @@ void IGraphicsMac::PromptForFile(WDL_String* pFilename, EFileAction action, WDL_
 // [fileTypes release];
 }
 
+void IGraphicsMac::PromptForDirectory(WDL_String* pDirname, WDL_String* pStartDir)
+{
+  if (!WindowIsOpen())
+  {
+    pDirname->Set("");
+    return;
+  }
+
+  NSString* defaultDirName;
+  NSString* defaultPath;
+
+  if (pDirname->GetLength())
+  {
+    defaultDirName = [NSString stringWithCString:pDirname->Get() encoding:NSUTF8StringEncoding];
+  }
+  else
+  {
+    defaultDirName = [NSString stringWithCString:"" encoding:NSUTF8StringEncoding];
+  }
+
+  if (pStartDir->GetLength())
+  {
+    defaultPath = [NSString stringWithCString:pStartDir->Get() encoding:NSUTF8StringEncoding];
+  }
+  else
+  {
+    defaultPath = [NSString stringWithCString:DEFAULT_PATH_OSX encoding:NSUTF8StringEncoding];
+    pStartDir->Set(DEFAULT_PATH_OSX);
+  }
+
+  pDirname->Set(""); // reset it
+  NSOpenPanel* panelOpen = [NSOpenPanel openPanel];
+
+  //[panelOpen setTitle:title];
+  //[panelOpen setAllowsMultipleSelection:(allowmul?YES:NO)];
+  [panelOpen setCanChooseFiles:NO];
+  [panelOpen setCanChooseDirectories:YES];
+  [panelOpen setResolvesAliases:YES];
+  [panelOpen setAllowsMultipleSelection:NO];
+
+  int result = [panelOpen runModal];
+
+  if (result == NSOKButton)
+  {
+    NSString* fullPath = [ panelOpen filename ] ;
+    pDirname->Set( [fullPath UTF8String] );
+  }
+}
+
 bool IGraphicsMac::PromptForColor(IColor* pColor, char* prompt)
 {
 //  NSColorPanel *colorPanel = [NSColorPanel sharedColorPanel];
